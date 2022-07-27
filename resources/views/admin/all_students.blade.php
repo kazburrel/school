@@ -5,13 +5,13 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder fs-3 mb-1">All Lecturers</span>
+                <span class="card-label fw-bolder fs-3 mb-1">All Students</span>
                 <span class="text-muted mt-1 fw-bold fs-7"></span>
             </h3>
             {{-- SEARCH BEGINS --}}
 
             <!--begin::Input group-->
-            <form action="/admin/all_lecturer" class="d-flex align-items-center">
+            <form action="/admin/all_students" class="d-flex align-items-center">
                 <div class="position-relative w-md-400px me-md-2">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                     <span class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6">
@@ -40,7 +40,7 @@
 
             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                 title="Click to add a Department">
-                <a href="/admin/add_lecturer" class="btn btn-sm btn-light btn-active-primary">
+                <a href="/admin/add_student" class="btn btn-sm btn-light btn-active-primary">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -51,7 +51,7 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->New Lecturer
+                    <!--end::Svg Icon-->New Student
                 </a>
             </div>
         </div>
@@ -66,84 +66,58 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bolder text-muted">
-                            <th class="min-w-50px">Lecturer Id</th>
+                            <th class="min-w-50px">Reg No</th>
                             <th class="min-w-200px">Full Name</th>
-                            <th class="min-w-150px">Email</th>
-                            <th class="min-w-100px">Join Date</th>
                             <th class="min-w-150px">Department</th>
-                            <th class="min-w-50px">Gender</th>
-                            <th class="min-w-150px">Mobile Number</th>
-                            {{-- <th class="min-w-150px">Birth Date</th> --}}
-                            {{-- <th class="min-w-150px">Address</th> --}}
-                            <th class="min-w-150px">Education</th>
+                            <th class="min-w-50px">Mobile</th>
+                            <th class="min-w-150px">Email</th>
+                            <th class="min-w-100px">Admission Date</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @forelse ($lecturers as $lecturer)
+                        @forelse ($students as $student)
                             <tr>
                                 <td>
-                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->lecturer_id}}</span>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $student->reg_no }}</span>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="symbol symbol-45px me-5">
-                                            <img src="{{ asset('storage/' . $lecturer->pro_pic) }}" alt="" />
+                                            <img src="{{ asset('storage/' . $student->pro_pic) }}" alt="" />
                                         </div>
-                                        <div class=justify-content-start flex-center">
-                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->fname }} </span>
-                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->lname }}</span>
+                                        <div class="justify-content-start flex-center">
+                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $student->fname }} </span>
+                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $student->lname }}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->email }}</span>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $student->department }}</span>
                                 </td>
 
                                 <td class="text-end">
                                     <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->join_date }}</span>
+                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $student->mobile_no }}</span>
                                     </div>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->department }}</span>
-                                    </div>
-                                </td>
-                                <td class="text-end">
-                                    <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->gender }}</span>
-                                    </div>
-                                </td>
-                                <td class="text-end">
-                                    <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->mobile_no }}</span>
-                                    </div>
-                                </td>
-                                {{-- <td class="text-end">
-                                    <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->birth_date }}</span>
+                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $student->email }}</span>
                                     </div>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-flex flex-center w-100 me-2">
                                         <span
-                                            class="text-dark fw-bolder  d-block fs-6">{{ Str::words($lecturer->address, 5) }}</span>
-                                    </div>
-                                </td> --}}
-                                <td class="text-end">
-                                    <div class="d-flex text-center w-100 me-2">
-                                        <span
-                                            class="text-dark fw-bolder  d-block fs-6">{{ Str::words($lecturer->education, 5) }}</span>
+                                            class="text-dark fw-bolder  d-block fs-6">{{ Date::parse($student->reg_date)->format('jS, F Y') }}</span>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-end flex-shrink-0">
                                         <div class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#kt_modal_add_user-{{ $lecturer->id }}">
+                                            data-bs-toggle="modal" data-bs-target="#kt_modal_add_user-{{ $student->id }}">
                                             <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                             <span class="svg-icon svg-icon-3 svg-icon-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -159,7 +133,7 @@
                                             <!--end::Svg Icon-->
                                         </div>
                                         <a href="#" class="btn btn-icon btn-bg-light btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#kt_modal_1{{ $lecturer->id }}"
+                                            data-bs-target="#kt_modal_1{{ $student->id }}"
                                             data-kt-users-table-filter="delete_row">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                             <span class="svg-icon svg-icon-3 svg-icon-danger">
@@ -178,13 +152,10 @@
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        {{-- <a href="#" class="menu-link px-3" data-bs-toggle="modal"
-                                                        data-bs-target="#kt_modal_1{{ $resume->id }}"
-                                                        data-kt-users-table-filter="delete_row">Delete</a> --}}
                                     </div>
                                 </td>
                             </tr>
-                            <div class="modal fade" tabindex="-1" id="kt_modal_1{{ $lecturer->id }}">
+                            <div class="modal fade" tabindex="-1" id="kt_modal_1{{ $student->id }}">
                                 <div class="modal-dialog">
                                     <div class="modal-content text-center">
                                         <div class="modal-header">
@@ -215,12 +186,12 @@
                                         <div class="modal-footer d-flex justify-content-center">
                                             <button type="button" class="btn btn-light"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <x-delete href="/admin/all_lecturer/{{ $lecturer->id }}" />
+                                            <x-delete href="/admin/all_students/{{ $student->id }}" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="kt_modal_add_user-{{ $lecturer->id }}" tabindex="-1"
+                            <div class="modal fade" id="kt_modal_add_user-{{ $student->id }}" tabindex="-1"
                                 aria-hidden="true">
                                 <!--begin::Modal dialog-->
                                 <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -252,15 +223,15 @@
                                         <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                                             <!--begin:Form-->
                                             <form id="kt_modal_new_target_form" class="form"
-                                                action="/admin/all_lecturer/{{ $lecturer->id }}" method="POST"
+                                                action="/admin/all_students/{{ $student->id }}" method="POST"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <!--begin::Heading-->
                                                 <div class="mb-13 text-center">
                                                     <!--begin::Title-->
-                                                    <h1 class="mb-3">Update {{ $lecturer->fname }}
-                                                        {{ $lecturer->lname }} Details</h1>
+                                                    <h1 class="mb-3">Update {{ $student->fname }} {{ $student->lname }}
+                                                    </h1>
                                                     <!--end::Title-->
                                                 </div>
                                                 <!--end::Heading-->
@@ -275,8 +246,8 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <input type="text" class="form-control form-control-solid"
-                                                        placeholder="Enter Department Name" name="fname"
-                                                        value="{{ old('fname') ?? $lecturer->fname }}" />
+                                                        placeholder="Enter First Name" name="fname"
+                                                        value="{{ old('fname') ?? $student->fname }}" />
                                                     @error('fname')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -293,9 +264,27 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <input type="text" class="form-control form-control-solid"
-                                                        placeholder="Enter Department Name" name="lname"
-                                                        value="{{ old('lname') ?? $lecturer->lname }}" />
+                                                        placeholder="Enter Last Name" name="lname"
+                                                        value="{{ old('lname') ?? $student->lname }}" />
                                                     @error('lname')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                        <span class="required">Reg No</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify a target name for future usage and reference"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input disabled type="text" class="form-control form-control-solid"
+                                                        placeholder="Enter Student Registration Number" name="reg_no"
+                                                        value="{{ old('reg_no') ?? $student->reg_no }}" />
+                                                    @error('reg_no')
                                                         <p class="text-danger">
                                                             {{ $message }}
                                                         </p>
@@ -311,8 +300,8 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <input type="email" class="form-control form-control-solid"
-                                                        placeholder="Enter Department Name" name="email"
-                                                        value="{{ old('email') ?? $lecturer->email }}" />
+                                                        placeholder="Enter Email" name="email"
+                                                        value="{{ old('email') ?? $student->email }}" />
                                                     @error('email')
                                                         <p class="text-danger">
                                                             {{ $message }}
@@ -322,7 +311,7 @@
                                                 <div class="row g-9 mb-8">
                                                     <!--begin::Col-->
                                                     <div class="col-md-12 fv-row">
-                                                        <label class="required fs-6 fw-bold mb-2">Joining Date</label>
+                                                        <label class="required fs-6 fw-bold mb-2">Registration Date</label>
                                                         <!--begin::Input-->
                                                         <div class="position-relative d-flex align-items-center">
                                                             <!--begin::Icon-->
@@ -345,10 +334,10 @@
                                                             <!--end::Icon-->
                                                             <!--begin::Datepicker-->
                                                             <input class="form-control form-control-solid ps-12"
-                                                                placeholder="Select a date" name="join_date"
+                                                                placeholder="Select a date" name="reg_date"
                                                                 type="date"
-                                                                value="{{ old('join_date') ?? $lecturer->join_date }}" />
-                                                            @error('join_date')
+                                                                value="{{ old('reg_date') ?? $student->reg_date }}" />
+                                                            @error('reg_date')
                                                                 <p class="text-danger">
                                                                     {{ $message }}
                                                                 </p>
@@ -371,10 +360,10 @@
                                                     <!--end::Label-->
                                                     <select class="form-select" aria-label="Select example"
                                                         name="department">
-                                                        <option>Select Department</option>
+                                                        <option value="">Select Department</option>
                                                         @forelse ($departments as $dept)
-                                                            <option @selected($dept->dept_name == $lecturer->dept_name)
-                                                                >
+                                                            <option value="{{ $dept->dept_name }}"
+                                                                {{ old('department') == $dept->dept_name ? 'selected' : '' }}>
                                                                 {{ $dept->dept_name }}
                                                             </option>
                                                         @empty
@@ -397,9 +386,13 @@
                                                     <!--end::Label-->
                                                     <select class="form-select" aria-label="Select example"
                                                         name="gender">
-                                                        <option>Select Gender</option>
-                                                        <option @selected($lecturer->gender == 'male') value="male">Male</option>
-                                                        <option @selected($lecturer->gender == 'female') value="female">Female</option>
+                                                        <option value="">Select Gender</option>
+                                                        <option value="male"
+                                                            {{ old('gender') == 'male' ? 'selected' : '' }}>Male
+                                                        </option>
+                                                        <option value="female"
+                                                            {{ old('gender') == 'female' ? 'selected' : '' }}>Female
+                                                        </option>
                                                         {{-- <option @selected($skill->type == 'databases') value="databases">DATABASES</option> --}}
                                                     </select>
                                                     @error('gender')
@@ -419,8 +412,44 @@
                                                     <!--end::Label-->
                                                     <input type="number" class="form-control form-control-solid"
                                                         placeholder="Enter Mobile No" name="mobile_no"
-                                                        value="{{ old('mobile_no') ?? $lecturer->mobile_no }}" />
+                                                        value="{{ old('mobile_no') ?? $student->mobile_no }}" />
                                                     @error('mobile_no')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                        <span class="required">Parents Name</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify a target name for future usage and reference"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        placeholder="Enter Parents Name" name="parent_name"
+                                                        value="{{ old('parent_name') ?? $student->parent_name }}" />
+                                                    @error('parent_name')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                        <span class="required">Parents Mobile Number</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify a target name for future usage and reference"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input type="number" class="form-control form-control-solid"
+                                                        placeholder="Enter parents Mobile Number" name="parents_no"
+                                                        value="{{ old('parents_no') ?? $student->parents_no }}" />
+                                                    @error('parents_no')
                                                         <p class="text-danger">
                                                             {{ $message }}
                                                         </p>
@@ -449,9 +478,9 @@
                                                         <!--end::Svg Icon-->
                                                         <!--end::Icon-->
                                                         <!--begin::Datepicker-->
-                                                        <input class="form-control form-control-solid ps-12"
+                                                        <input disabled class="form-control form-control-solid ps-12"
                                                             placeholder="Select a date" name="birth_date" type="date"
-                                                            value="{{ old('birth_date') ?? $lecturer->birth_date }}" />
+                                                            value="{{ old('birth_date') ?? $student->birth_date }}" />
                                                         @error('birth_date')
                                                             <p class="text-danger">
                                                                 {{ $message }}
@@ -462,8 +491,8 @@
                                                     <div class="d-flex flex-column mb-8">
                                                         <label class="fs-6 fw-bold mb-2">Address</label>
                                                         <textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Address">
-                                                    {{ old('address') ?? $lecturer->address }}
-                                                    </textarea>
+                                                            {{ old('address') ?? $student->address }}
+                                                        </textarea>
                                                         @error('address')
                                                             <p class="text-danger">
                                                                 {{ $message }}
@@ -471,6 +500,24 @@
                                                         @enderror
                                                     </div>
                                                     <!--end::Input-->
+                                                </div>
+                                                <div class="d-flex flex-column mb-8 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                        <span class="required">Blood Group</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify a target name for future usage and reference"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        placeholder="Enter Blood Group" name="blood_g"
+                                                        value="{{ old('blood_g') ?? $student->blood_g }}" />
+                                                    @error('blood_g')
+                                                        <p class="text-danger">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="d-flex flex-column mb-8 fv-row">
@@ -483,27 +530,13 @@
                                                     <!--end::Label-->
                                                     <input type="file" class="form-control form-control-solid"
                                                         placeholder="" name="pro_pic"
-                                                        value="{{ old('pro_pic') ?? $lecturer->pro_pic }}" />
+                                                        value="{{ old('pro_pic') ?? $student->pro_pic }}" />
                                                     @error('pro_pic')
                                                         <p class="text-danger">
                                                             {{ $message }}
                                                         </p>
                                                     @enderror
                                                 </div>
-
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-8">
-                                                    <label class="fs-6 fw-bold mb-2">Education</label>
-                                                    <textarea class="form-control form-control-solid" rows="3" name="education" placeholder="Department Details">
-                                                {{ old('education') ?? $lecturer->education }}
-                                                </textarea>
-                                                    @error('education')
-                                                        <p class="text-danger">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                                <!--end::Input group-->
                                                 <!--begin::Actions-->
                                                 <div class="text-center">
                                                     {{-- <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button> --}}
@@ -528,7 +561,7 @@
                     </tbody>
                     <!--end::Table body-->
                 </table>
-                {{ $lecturers->links() }}
+                {{ $students->links() }}
                 <!--end::Table-->
             </div>
             <!--end::Table container-->

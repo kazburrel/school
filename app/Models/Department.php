@@ -10,21 +10,17 @@ class Department extends Model
 {
     use HasFactory, Searchable;
 
+    protected $primaryKey = 'dept_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
-        'dept_name', 'hod', 'hod_pic', 'join_date', 'stu_cap', 'dept_details'
+        'dept_id','dept_name', 'hod', 'hod_pic', 'join_date', 'stu_cap', 'dept_details'
     ];
-
-    // public function scopeFilter($query, array $filters){
-    //     if ($filters['search'] ?? false) {
-    //         $query->where('hod', 'like', '%' . request('search'). '%');
-    //     }
-    // }
-
-
 
     public function toSearchableArray()
     {
         return  [
+            'dept_id' => $this->dept_id,
             'dept_name' => $this->dept_name,
             'hod' => $this->hod,
             'join_date' => $this->join_date,

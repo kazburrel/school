@@ -12,9 +12,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 class LecturerController extends Controller
 {
     public function CreateLecturer(StoreLecturerRequest $request){
+        $lecturer_id = mt_rand(1000, 9999);
         $file = $request->hasFile('pro_pic') ? $request->file('pro_pic')->store('LecturerPic', 'public') : '';
 
         Lecturer::create($request->safe()->merge([
+            'lecturer_id'=>$lecturer_id,
             'pro_pic' => $file
         ])->all());
         Alert::success('Lecturer Created Successfully');

@@ -11,13 +11,13 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <!--begin:Form-->
-                <form id="kt_modal_new_target_form" class="form" action="/admin/add_lecturer" method="POST"
+                <form id="kt_modal_new_target_form" class="form" action="/admin/add_student" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Add a New Lecturer</h1>
+                        <h1 class="mb-3">Add a New Student</h1>
                         <!--end::Title-->
                     </div>
                     <!--end::Heading-->
@@ -30,7 +30,7 @@
                                 title="Specify a target name for future usage and reference"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" placeholder="Enter Department Name"
+                        <input type="text" class="form-control form-control-solid" placeholder="Enter First Name"
                             name="fname" value="{{ old('fname') }}" />
                         @error('fname')
                             <p class="text-danger">
@@ -46,9 +46,25 @@
                                 title="Specify a target name for future usage and reference"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="text" class="form-control form-control-solid" placeholder="Enter Department Name"
+                        <input type="text" class="form-control form-control-solid" placeholder="Enter Last Name"
                             name="lname" value="{{ old('lname') }}" />
                         @error('lname')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Reg No</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid"
+                            placeholder="Enter Student Registration Number" name="reg_no" value="{{ old('reg_no') }}" />
+                        @error('reg_no')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
@@ -62,7 +78,7 @@
                                 title="Specify a target name for future usage and reference"></i>
                         </label>
                         <!--end::Label-->
-                        <input type="email" class="form-control form-control-solid" placeholder="Enter Department Name"
+                        <input type="email" class="form-control form-control-solid" placeholder="Enter Email"
                             name="email" value="{{ old('email') }}" />
                         @error('email')
                             <p class="text-danger">
@@ -73,7 +89,7 @@
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
                         <div class="col-md-12 fv-row">
-                            <label class="required fs-6 fw-bold mb-2">Joining Date</label>
+                            <label class="required fs-6 fw-bold mb-2">Registration Date</label>
                             <!--begin::Input-->
                             <div class="position-relative d-flex align-items-center">
                                 <!--begin::Icon-->
@@ -96,8 +112,8 @@
                                 <!--end::Icon-->
                                 <!--begin::Datepicker-->
                                 <input class="form-control form-control-solid ps-12" placeholder="Select a date"
-                                    name="join_date" type="date" value="{{ old('join_date') }}" />
-                                @error('join_date')
+                                    name="reg_date" type="date" value="{{ old('reg_date') }}" />
+                                @error('reg_date')
                                     <p class="text-danger">
                                         {{ $message }}
                                     </p>
@@ -108,39 +124,7 @@
                         </div>
                         <!--end::Col-->
                     </div>
-                    <div class="d-flex flex-column mb-8 fv-row">
-                        <!--begin::Label-->
-                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Password</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Specify a target name for future usage and reference"></i>
-                        </label>
-                        <!--end::Label-->
-                        <input type="password" class="form-control form-control-solid" placeholder="Enter Department Name"
-                            name="password" value="{{ old('password') }}" />
-                        @error('password')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-                    <div class="d-flex flex-column mb-8 fv-row">
-                        <!--begin::Label-->
-                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                            <span class="required">Confirm Password</span>
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                title="Specify a target name for future usage and reference"></i>
-                        </label>
-                        <!--end::Label-->
-                        <input type="password" class="form-control form-control-solid"
-                            placeholder="Enter password confirmation" name="password_confirmation"
-                            value="{{ old('password_confirmation') }}" />
-                        @error('password_confirmation')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
+
                     <div class="d-flex flex-column mb-8 fv-row">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -152,7 +136,8 @@
                         <select class="form-select" aria-label="Select example" name="department">
                             <option value="">Select Department</option>
                             @forelse ($departments as $dept)
-                                <option value="{{ $dept->dept_name }}">{{ $dept->dept_name }}
+                                <option value="{{ $dept->dept_name }}" {{ old('department') == $dept->dept_name ? 'selected' : ''}}>
+                                    {{ $dept->dept_name }}
                                 </option>
                             @empty
                             @endforelse
@@ -173,8 +158,8 @@
                         <!--end::Label-->
                         <select class="form-select" aria-label="Select example" name="gender">
                             <option value="">Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option value="male" {{ old('gender',) == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ old('gender',) == 'female' ? 'selected' : '' }}>Female</option>
                             {{-- <option @selected($skill->type == 'databases') value="databases">DATABASES</option> --}}
                         </select>
                         @error('department')
@@ -194,6 +179,39 @@
                         <input type="number" class="form-control form-control-solid" placeholder="Enter Mobile No"
                             name="mobile_no" value="{{ old('mobile_no') }}" />
                         @error('mobile_no')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Parents Name</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" placeholder="Enter Parents Name"
+                            name="parent_name" value="{{ old('parent_name') }}" />
+                        @error('parent_name')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Parents Mobile Number</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="number" class="form-control form-control-solid"
+                            placeholder="Enter parents Mobile Number" name="parents_no"
+                            value="{{ old('password_confirmation') }}" />
+                        @error('parents_no')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
@@ -234,8 +252,8 @@
                         <div class="d-flex flex-column mb-8">
                             <label class="fs-6 fw-bold mb-2">Address</label>
                             <textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Address">
-                            {{ old('address') }}
-                            </textarea>
+                        {{ old('address') }}
+                        </textarea>
                             @error('address')
                                 <p class="text-danger">
                                     {{ $message }}
@@ -243,6 +261,22 @@
                             @enderror
                         </div>
                         <!--end::Input-->
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Blood Group</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <input type="text" class="form-control form-control-solid" placeholder="Enter Blood Group"
+                            name="blood_g" value="{{ old('blood_g') }}" />
+                        @error('blood_g')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="d-flex flex-column mb-8 fv-row">
@@ -261,20 +295,6 @@
                             </p>
                         @enderror
                     </div>
-
-                    <!--begin::Input group-->
-                    <div class="d-flex flex-column mb-8">
-                        <label class="fs-6 fw-bold mb-2">Education</label>
-                        <textarea class="form-control form-control-solid" rows="3" name="education" placeholder="Department Details">
-                        {{ old('education') }}
-                        </textarea>
-                        @error('education')
-                            <p class="text-danger">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-                    <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
                         {{-- <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel</button> --}}

@@ -14,9 +14,11 @@ class AddDepartmentController extends Controller
     public function DepartmentAdd(StoreDepartment $request)
     {
 
+        $dept_id = mt_rand(1000, 9999);
         $file = $request->hasFile('hod_pic') ? $request->file('hod_pic')->store('hodPic', 'public') : '';
 
         Department::create($request->safe()->merge([
+            'dept_id' => $dept_id,
             'hod_pic' => $file
         ])->all());
         Alert::success('Department Created Successfully');
@@ -25,7 +27,7 @@ class AddDepartmentController extends Controller
 
     public function UpdateDepartment(UpdateDepartmentRequest $request, Department $department)
     {
-        $file = $request->hasFile('hod_pic') ? $request->file('hod_pic')->store('hodPic', 'public') : '';
+        $file = $request->hasFile('hod_pic') ? $request->file('hod_pic')->store('hodPic', 'public') : $department->hod_pic;
 
         $department->update($request->safe()->merge([
             'hod_pic' => $file

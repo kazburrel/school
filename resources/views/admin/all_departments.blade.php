@@ -66,7 +66,7 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bolder text-muted">
-                            <th class="min-w-50px">S/N</th>
+                            <th class="min-w-50px">Course Id</th>
                             <th class="min-w-200px">Department Name</th>
                             <th class="min-w-150px">HOD</th>
                             <th class="min-w-150px">Department Start Date</th>
@@ -78,10 +78,10 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @forelse ($departments as $i => $department)
+                        @forelse ($departments as $department)
                             <tr>
                                 <td>
-                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $i+1 }}</span>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $department->dept_id }}</span>
                                 </td>
                                 <td>
                                     <span class="text-dark fw-bolder  d-block fs-6">{{ $department->dept_name }}</span>
@@ -133,8 +133,8 @@
                                             <!--end::Svg Icon-->
                                         </div>
                                         <a href="#" class="btn btn-icon btn-bg-light btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_1{{ $department->id }}"
-                                        data-kt-users-table-filter="delete_row">
+                                            data-bs-target="#kt_modal_1{{ $department->id }}"
+                                            data-kt-users-table-filter="delete_row">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                             <span class="svg-icon svg-icon-3 svg-icon-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -166,16 +166,14 @@
                                             <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
                                                 data-bs-dismiss="modal" aria-label="Close">
                                                 <span class="svg-icon svg-icon-2x">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none">
                                                         <rect opacity="0.5" x="6" y="17.3137"
                                                             width="16" height="2" rx="1"
-                                                            transform="rotate(-45 6 17.3137)"
-                                                            fill="currentColor" />
+                                                            transform="rotate(-45 6 17.3137)" fill="currentColor" />
                                                         <rect x="7.41422" y="6" width="16"
                                                             height="2" rx="1"
-                                                            transform="rotate(45 7.41422 6)"
-                                                            fill="currentColor" />
+                                                            transform="rotate(45 7.41422 6)" fill="currentColor" />
                                                     </svg>
                                                 </span>
                                             </div>
@@ -380,8 +378,7 @@
                                 <!--end::Modal dialog-->
                             </div>
                         @empty
-
-                        {{$i++}}
+                            
                         @endforelse
 
                     </tbody>

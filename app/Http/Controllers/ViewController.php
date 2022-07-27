@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lecturer;
+use App\Models\Student;
 use Illuminate\Http\Request;
+
+use function Ramsey\Uuid\v1;
 
 class ViewController extends Controller
 {
@@ -37,5 +41,29 @@ class ViewController extends Controller
         // $departments = Department::paginate(5);
         $departments = Department::search(request(key:'search'))->paginate(5);
         return view('admin.all_departments', ['departments' => $departments]);
+    }
+
+    public function AddStudentView(){
+        $departments = Department::all();
+        return view('admin.add_student', ['departments' => $departments]);
+    }
+
+    public function ViewAllStudent(){
+        $departments = Department::all();
+        $students = Student::search(request(key:'search'))->paginate(5);
+        return view('admin.all_students', ['students'=>$students,'departments' => $departments]);
+    }
+
+    public function ViewAddCourse(){
+
+        $lecturers = Lecturer::all();
+        return view('admin.add_course', ['lecturers'=>$lecturers]);
+    }
+
+    public function ViewAllCourse(){
+
+        $lecturers = Lecturer::all();
+        $courses = Course::search(request(key:'search'))->paginate(5);
+        return view('admin.all_courses', ['courses'=>$courses, 'lecturers'=>$lecturers]);
     }
 }

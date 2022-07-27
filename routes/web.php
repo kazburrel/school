@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AddDepartmentController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +35,15 @@ Route::prefix('/admin')->group(function () {
     Route::get('/all_departments', [ViewController::class, 'ViewAllDepartment']);
     Route::put('/all_departments/{department}', [AddDepartmentController::class, 'UpdateDepartment']);
     Route::delete('/all_departments/{department}', [AddDepartmentController::class, 'DestroyDepartment']);
+    Route::get('/add_student', [ViewController::class, 'AddStudentView']);
+    Route::post('/add_student', [StudentController::class, 'AddStudent']);
+    Route::get('/all_students', [ViewController::class, 'ViewAllStudent']);
+    Route::put('/all_students/{student}', [StudentController::class, 'UpdateStudent']);
+    Route::delete('/all_students/{student}', [StudentController::class, 'DestroyStudent']);
+    Route::get('/add_course', [ViewController::class, 'ViewAddCourse']);
+    Route::post('/add_course', [CourseController::class, 'AddCourse']);
+    Route::put('/add_course/{course}', [CourseController::class, 'UpdateCourse']);
+    Route::get('/all_courses', [ViewController::class, 'ViewAllCourse']);
+    Route::delete('/all_courses/{course}', [CourseController::class, 'DestroyCourse']);
 });
 
