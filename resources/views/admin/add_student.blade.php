@@ -136,7 +136,7 @@
                         <select class="form-select" aria-label="Select example" name="department">
                             <option value="">Select Department</option>
                             @forelse ($departments as $dept)
-                                <option value="{{ $dept->dept_name }}" {{ old('department') == $dept->dept_name ? 'selected' : ''}}>
+                                <option value="{{ $dept->dept_id }}" {{ old('department') == $dept->dept_name ? 'selected' : ''}}>
                                     {{ $dept->dept_name }}
                                 </option>
                             @empty

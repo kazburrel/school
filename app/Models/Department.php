@@ -27,4 +27,8 @@ class Department extends Model
             'dept_details' => $this->dept_details
         ];
     }
+
+    public function students(){
+        return $this->hasMany(Student::class, 'dept_id');
+    }
 }

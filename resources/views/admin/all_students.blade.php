@@ -79,6 +79,7 @@
                     <!--begin::Table body-->
                     <tbody>
                         @forelse ($students as $student)
+                        
                             <tr>
                                 <td>
                                     <span class="text-dark fw-bolder  d-block fs-6">{{ $student->reg_no }}</span>
@@ -95,7 +96,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $student->department }}</span>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $student->departmentDetails !== null ? $student->departmentDetails->dept_name : ''}}</span>
                                 </td>
 
                                 <td class="text-end">
@@ -362,8 +363,11 @@
                                                         name="department">
                                                         <option value="">Select Department</option>
                                                         @forelse ($departments as $dept)
-                                                            <option value="{{ $dept->dept_name }}"
-                                                                {{ old('department') == $dept->dept_name ? 'selected' : '' }}>
+                                                            <option value="{{ $dept->dept_id }}"
+                                                                {{-- @if (dept_id)
+                                                                    
+                                                                @endif --}}
+                                                                {{ $dept->department === $student->departmentDetails->department ? 'selected' : '' }}>
                                                                 {{ $dept->dept_name }}
                                                             </option>
                                                         @empty
@@ -387,12 +391,8 @@
                                                     <select class="form-select" aria-label="Select example"
                                                         name="gender">
                                                         <option value="">Select Gender</option>
-                                                        <option value="male"
-                                                            {{ old('gender') == 'male' ? 'selected' : '' }}>Male
-                                                        </option>
-                                                        <option value="female"
-                                                            {{ old('gender') == 'female' ? 'selected' : '' }}>Female
-                                                        </option>
+                                                        <option @selected($student->gender == 'male') value="male">Male</option>
+                                                        <option @selected($student->gender == 'female') value="female">Female</option>
                                                         {{-- <option @selected($skill->type == 'databases') value="databases">DATABASES</option> --}}
                                                     </select>
                                                     @error('gender')

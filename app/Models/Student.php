@@ -35,7 +35,7 @@ class Student extends Model
             'reg_no'=>$this->reg_no,
             'email'=>$this->email,
             'reg_date'=>$this->reg_date,
-            'department'=>$this->department,
+            'department'=>$this->departmentDetails,
             'gender'=>$this->gender,
             'mobile_no'=>$this->mobile_no,
             'parent_name'=>$this->parent_name,
@@ -44,5 +44,8 @@ class Student extends Model
             'address'=>$this->address,
             'blood_g'=>$this->blood_g,
         ];
+    }
+    public function departmentDetails(){
+        return $this->belongsTo(Department::class, 'department', 'dept_id');
     }
 }

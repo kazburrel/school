@@ -382,10 +382,6 @@
                                                             {{ $lecturer->lecturer_id === $course->lecturerDetails->lecturer_id ? 'selected' : '' }}>
                                                             {{ $lecturer->fname }} {{ $lecturer->lname }}
                                                         </option>
-                                                        {{-- <option value="{{ $dept->id }}"
-                                                            {{ $student->id == $dept->id ? 'selected' : '' }}>
-                                                            {{ $dept->dept_name }}
-                                                        </option> --}}
                                                     @empty
                                                     @endforelse
                                                 </select>
