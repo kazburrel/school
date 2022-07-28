@@ -29,13 +29,15 @@ class Student extends Model
 
     public function toSearchableArray()
     {
+        // $department = Department::find(1);
         return  [
             'fname'=>$this->fname,
             'lname'=>$this->lname,
             'reg_no'=>$this->reg_no,
             'email'=>$this->email,
             'reg_date'=>$this->reg_date,
-            'department'=>$this->departmentDetails,
+            'department'=>$this->dept_name,
+                                            
             'gender'=>$this->gender,
             'mobile_no'=>$this->mobile_no,
             'parent_name'=>$this->parent_name,

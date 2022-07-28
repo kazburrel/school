@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lecturer;
+use App\Models\Staff;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -65,5 +66,15 @@ class ViewController extends Controller
         $lecturers = Lecturer::all();
         $courses = Course::search(request(key:'search'))->paginate(5);
         return view('admin.all_courses', ['courses'=>$courses, 'lecturers'=>$lecturers]);
+    }
+
+    public function ViewAddStaff(){
+        return view('admin.add_staff');
+    }
+
+    public function ViewAllStaff(){
+
+        $staffs = Staff::search(request(key:'search'))->paginate(5);
+        return view('admin.all_staff', ['staffs'=>$staffs]);
     }
 }

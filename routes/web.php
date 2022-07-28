@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddDepartmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,10 @@ Route::prefix('/admin')->group(function () {
     Route::put('/add_course/{course}', [CourseController::class, 'UpdateCourse']);
     Route::get('/all_courses', [ViewController::class, 'ViewAllCourse']);
     Route::delete('/all_courses/{course}', [CourseController::class, 'DestroyCourse']);
+    Route::get('/add_staff', [ViewController::class, 'ViewAddStaff']);
+    Route::post('/add_staff', [StaffController::class, 'AddStaff']);
+    Route::get('/all_staff', [ViewController::class, 'ViewAllStaff']);
+    Route::put('/all_staff/{staff}', [StaffController::class, 'UpdateStaff']);
+    Route::delete('/all_staff/{staff}', [StaffController::class, 'DestroyStaff']);
 });
 
