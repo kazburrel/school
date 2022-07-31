@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddDepartmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\LibraryAssetController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ViewController;
@@ -51,5 +52,10 @@ Route::prefix('/admin')->group(function () {
     Route::get('/all_staff', [ViewController::class, 'ViewAllStaff']);
     Route::put('/all_staff/{staff}', [StaffController::class, 'UpdateStaff']);
     Route::delete('/all_staff/{staff}', [StaffController::class, 'DestroyStaff']);
+    Route::get('/add_libraryAsset', [ViewController::class, 'AddLibraryAssetView']);
+    Route::post('/add_libraryAsset', [LibraryAssetController::class, 'AddLibraryAsset']);
+    Route::get('/all_library_asset', [ViewController::class, 'ViewLibraryAsset']);
+    Route::put('/all_library_asset/{asset}', [LibraryAssetController::class, 'UpdateLibraryAsset']);
+    Route::delete('/all_library_asset/{asset}', [LibraryAssetController::class, 'DeleteLibraryAsset']);
 });
 

@@ -31,7 +31,6 @@ class StoreCourseRequest extends FormRequest
             'start_date'=>'required',
             'course_duration'=>'required',
             'course_price'=>'required',
-            'lecturer'=>'required',
             'max_student'=>'required',
             'course_avatar'=>'required',
         ];

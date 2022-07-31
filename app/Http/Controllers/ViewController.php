@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lecturer;
+use App\Models\LibraryAsset;
 use App\Models\Staff;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class ViewController extends Controller
     public function ViewAllLecturer()
     {
         $departments = Department::all();
-        $lecturers = Lecturer::search(request(key:'search'))->paginate(5);
+        $lecturers = Lecturer::search(request(key:'search'))->first()->paginate(10);
         return view('admin.all_lecturers', ['lecturers' => $lecturers,'departments' => $departments ]);
     }
 
@@ -39,8 +40,8 @@ class ViewController extends Controller
 
     public function ViewAllDepartment()
     {
-        // $departments = Department::paginate(5);
-        $departments = Department::search(request(key:'search'))->paginate(5);
+        // $departments = Department::paginate(10);
+        $departments = Department::search(request(key:'search'))->first()->paginate(10);
         return view('admin.all_departments', ['departments' => $departments]);
     }
 
@@ -51,7 +52,7 @@ class ViewController extends Controller
 
     public function ViewAllStudent(){
         $departments = Department::all();
-        $students = Student::search(request(key:'search'))->paginate(5);
+        $students = Student::search(request(key:'search'))->first()->paginate(10);
         return view('admin.all_students', ['students'=>$students,'departments' => $departments]);
     }
 
@@ -64,7 +65,7 @@ class ViewController extends Controller
     public function ViewAllCourse(){
 
         $lecturers = Lecturer::all();
-        $courses = Course::search(request(key:'search'))->paginate(5);
+        $courses = Course::search(request(key:'search'))->first()->paginate(10);
         return view('admin.all_courses', ['courses'=>$courses, 'lecturers'=>$lecturers]);
     }
 
@@ -74,7 +75,20 @@ class ViewController extends Controller
 
     public function ViewAllStaff(){
 
-        $staffs = Staff::search(request(key:'search'))->paginate(5);
+        $staffs = Staff::search(request(key:'search'))->first()->paginate(10);
         return view('admin.all_staff', ['staffs'=>$staffs]);
+    }
+
+    public function AddLibraryAssetView(){
+
+        $departments = Department::all();
+        return view('admin.add_libraryAsset', ['departments'=>$departments]);
+    }
+
+    public function ViewLibraryAsset(){
+
+        $departments = Department::all();
+        $assets = LibraryAsset::search(request(key:'search'))->first()->paginate(10);
+        return view('admin.all_library_asset', ['assets'=>$assets, 'departments'=>$departments]);
     }
 }

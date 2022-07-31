@@ -299,7 +299,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="/admin/all_library_asset">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -307,7 +307,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="/admin/add_libraryAsset">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>

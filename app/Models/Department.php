@@ -31,4 +31,8 @@ class Department extends Model
     public function students(){
         return $this->hasMany(Student::class, 'dept_id');
     }
+    
+    public function libraryAssets(){
+        return $this->hasMany(LibraryAsset::class, 'dept_id');
+    }
 }

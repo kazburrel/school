@@ -35,9 +35,7 @@ class Student extends Model
             'lname'=>$this->lname,
             'reg_no'=>$this->reg_no,
             'email'=>$this->email,
-            'reg_date'=>$this->reg_date,
-            'department'=>$this->dept_name,
-                                            
+            'reg_date'=>$this->reg_date,                          
             'gender'=>$this->gender,
             'mobile_no'=>$this->mobile_no,
             'parent_name'=>$this->parent_name,
