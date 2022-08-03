@@ -15,7 +15,7 @@ class Staff extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'staff_id','fname', 'lname', 'email', 'join_date', 'password', 'department', 'gender', 'mobile_no', 'birth_date', 'address', 'staff_avatar', 'education'
+        'staff_id','fname', 'lname', 'email', 'join_date', 'password', 'department', 'gender', 'mobile_no', 'birth_date', 'address', 'staff_avatar', 'education','status'
     ];
 
     public function toSearchableArray()

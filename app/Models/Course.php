@@ -34,7 +34,7 @@ class Course extends Model
             'course_name' => $this->course_name,
             'course_code' => $this->course_date,
             'course_det' => $this->course_det,
-            'lecturer' => $this->lecture,
+            // 'lecturer' => $this->lecture,
         ];
     }
 

@@ -38,7 +38,8 @@ class StoreStudentRequest extends FormRequest
             'birth_date'=>'required',
             'address'=>'required',
             'blood_g'=>'required',
-            'pro_pic'=>'required'
+            'pro_pic'=>'required',
+            'status'=>'required',
         ];
     }
 

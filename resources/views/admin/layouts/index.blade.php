@@ -64,8 +64,10 @@ License: For each use you must have a valid license purchased only from above li
                 @include('admin.layouts.header')
                 <!--end::Header-->
                 <!--begin::Content-->
-                @yield('content')
+                <div class="container">
+                    @yield('content')
 
+                </div>
                 <!--end::Content-->
                 <!--begin::Footer-->
                 @include('admin.layouts.footer')

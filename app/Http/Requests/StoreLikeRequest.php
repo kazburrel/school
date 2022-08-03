@@ -13,7 +13,7 @@ class StoreLikeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,9 @@ class StoreLikeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        // return [
+        //     'course_id' => $course->id,
+        //     'student_id' => $student->id
+        // ];
     }
 }

@@ -14,7 +14,7 @@ class Lecturer extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'lecturer_id','fname', 'lname', 'email', 'join_date', 'password', 'department', 'gender', 'mobile_no', 'birth_date', 'address', 'pro_pic', 'education'
+        'lecturer_id','fname', 'lname', 'email', 'join_date', 'password', 'department', 'gender', 'mobile_no', 'birth_date', 'address', 'pro_pic', 'education','status'
     ];
 
     public function toSearchableArray()

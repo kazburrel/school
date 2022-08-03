@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\StoreLikeRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Lecturer;
@@ -32,6 +33,10 @@ class CourseController extends Controller
         ])->all());
         Alert::success('Course Updated Successfully');
         return redirect()->back();
+    }
+
+    public function StoreLike(StoreLikeRequest $request){
+        
     }
 
     public function DestroyCourse(Course $course){

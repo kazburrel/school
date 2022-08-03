@@ -36,7 +36,8 @@ class StoreLecturerRequest extends FormRequest
             'birth_date' => 'required',
             'address' => 'required',
             'pro_pic' => 'required',
-            'education' => 'required'
+            'education' => 'required',
+            'status' => 'required',
         ];
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddDepartmentController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LibraryAssetController;
@@ -20,10 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('/admin')->group(function () {
 
     Route::get('/dashboard', [ViewController::class, 'DashboardView']);
@@ -31,6 +28,7 @@ Route::prefix('/admin')->group(function () {
     Route::post('/add_lecturer', [LecturerController::class, 'CreateLecturer']);
     Route::get('/all_lecturer', [ViewController::class, 'ViewAllLecturer']);
     Route::put('/all_lecturer/{lecturer}', [LecturerController::class, 'UpdateLecturer']);
+    Route::get('/all_lecturer/{lecturer}', [LecturerController::class, 'BlockLecturer']);
     Route::delete('/all_lecturer/{lecturer}', [LecturerController::class, 'DestroyLecturer']);
     Route::get('/add_department', [ViewController::class, 'AddDepartmentsView']);
     Route::post('/add_department', [AddDepartmentController::class, 'DepartmentAdd']);
@@ -41,21 +39,45 @@ Route::prefix('/admin')->group(function () {
     Route::post('/add_student', [StudentController::class, 'AddStudent']);
     Route::get('/all_students', [ViewController::class, 'ViewAllStudent']);
     Route::put('/all_students/{student}', [StudentController::class, 'UpdateStudent']);
+    Route::get('/all_student/{student}', [StudentController::class, 'BlockStudent']);
     Route::delete('/all_students/{student}', [StudentController::class, 'DestroyStudent']);
     Route::get('/add_course', [ViewController::class, 'ViewAddCourse']);
     Route::post('/add_course', [CourseController::class, 'AddCourse']);
     Route::put('/add_course/{course}', [CourseController::class, 'UpdateCourse']);
+    Route::post('/all_course/{course}', [CourseController::class, 'StoreLike']);
     Route::get('/all_courses', [ViewController::class, 'ViewAllCourse']);
     Route::delete('/all_courses/{course}', [CourseController::class, 'DestroyCourse']);
     Route::get('/add_staff', [ViewController::class, 'ViewAddStaff']);
     Route::post('/add_staff', [StaffController::class, 'AddStaff']);
     Route::get('/all_staff', [ViewController::class, 'ViewAllStaff']);
     Route::put('/all_staff/{staff}', [StaffController::class, 'UpdateStaff']);
+    Route::get('/all_staff/{staff}', [StaffController::class, 'BlockStaff']);
     Route::delete('/all_staff/{staff}', [StaffController::class, 'DestroyStaff']);
     Route::get('/add_libraryAsset', [ViewController::class, 'AddLibraryAssetView']);
     Route::post('/add_libraryAsset', [LibraryAssetController::class, 'AddLibraryAsset']);
     Route::get('/all_library_asset', [ViewController::class, 'ViewLibraryAsset']);
     Route::put('/all_library_asset/{asset}', [LibraryAssetController::class, 'UpdateLibraryAsset']);
     Route::delete('/all_library_asset/{asset}', [LibraryAssetController::class, 'DeleteLibraryAsset']);
+    Route::get('/all_admin', [ViewController::class, 'ViewAdmin']);
+    Route::get('/add_admin', [ViewController::class, 'AddAdmin']);
+    Route::post('/add_admin', [AdminController::class, 'AddAdmin']);
+    Route::put('/all_admin/{admin}', [AdminController::class, 'UpdateAdmin']);
+    Route::get('/all_admin/{admin}', [AdminController::class, 'BlockAdmin']);
+    Route::delete('/all_admin/{admin}', [AdminController::class, 'DestroyAdmin']);
 });
+
+// MAIN PAGES
+    Route::get('/', [ViewController::class, 'HomeView']);
+    Route::get('/about', [ViewController::class, 'AboutView']);
+    Route::get('/contact', [ViewController::class, 'ContactView']);
+    Route::get('/shop', [ViewController::class, 'ShopView']);
+    Route::get('/shop_cart', [ViewController::class, 'ShopCartView']);
+    Route::get('/shop_checkout', [ViewController::class, 'ShopCheckoutView']);
+    Route::get('/shop_details', [ViewController::class, 'ShopDetailsView']);
+    Route::get('/shop_orders', [ViewController::class, 'ShopOrdersView']);
+    Route::get('/course_list', [ViewController::class, 'CourseListView']);
+    Route::get('/course_category', [ViewController::class, 'CourseCatView']);
+    Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
+   
+
 

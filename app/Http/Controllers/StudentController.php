@@ -42,6 +42,13 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
+    public function BlockStudent(Student $student)
+    {
+        $student->status = !$student->status;
+        $student->save();
+        return redirect()->back();
+    }
+
     public function DestroyStudent(Student $student)
     {
         $student->delete();

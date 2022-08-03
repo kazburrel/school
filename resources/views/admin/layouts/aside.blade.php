@@ -359,6 +359,28 @@
                         </span>
                         <span class="menu-title">Add Staff</span>
                     </a>
+                </div> 
+                
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-0">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Admins</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="/admin/all_admin">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">All Admins</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="/admin/add_admin">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Add Admins</span>
+                    </a>
                 </div>
                 
             </div>

@@ -24,7 +24,8 @@ class Student extends Model
         'birth_date',
         'address',
         'blood_g',
-        'pro_pic'
+        'pro_pic',
+        'status'
     ];
 
     public function toSearchableArray()

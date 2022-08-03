@@ -35,6 +35,13 @@ class LecturerController extends Controller
         return redirect()->back();
     }
 
+    public function BlockLecturer(Lecturer $lecturer)
+    {
+        $lecturer->status = !$lecturer->status;
+        $lecturer->save();
+        return redirect()->back();
+    }
+
     public function DestroyLecturer(Lecturer $lecturer)
     {
         $lecturer->delete();

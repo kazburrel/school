@@ -36,7 +36,8 @@ class StoreStaffRequest extends FormRequest
             'birth_date' => 'required',
             'address' => 'required',
             'staff_avatar' => 'required',
-            'education' => 'required'
+            'education' => 'required',
+            'status' => 'required'
         ];
     }
 

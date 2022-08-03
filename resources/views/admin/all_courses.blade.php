@@ -102,7 +102,7 @@
                                         <!--begin::Toolbar-->
                                         <div class="d-flex justify-content-between">
                                             <div class="d-flex align-items-center rounded">
-                                                <form action="#" method="POST">
+                                                <form action="/admin/all_courses{{$course->id}}" method="POST">
                                                     <button class="border border-0 btn-outline-0 p-0 rounded" type="submit">
                                                         <a href="#"
                                                             class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2">

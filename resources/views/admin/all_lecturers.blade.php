@@ -66,6 +66,7 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bolder text-muted">
+                            <th class="min-w-50px">S/N</th>
                             <th class="min-w-50px">Lecturer Id</th>
                             <th class="min-w-200px">Full Name</th>
                             <th class="min-w-150px">Email</th>
@@ -73,19 +74,21 @@
                             <th class="min-w-150px">Department</th>
                             <th class="min-w-50px">Gender</th>
                             <th class="min-w-150px">Mobile Number</th>
-                            {{-- <th class="min-w-150px">Birth Date</th> --}}
-                            {{-- <th class="min-w-150px">Address</th> --}}
                             <th class="min-w-150px">Education</th>
+                            <th class="min-w-150px">Status</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @forelse ($lecturers as $lecturer)
+                        @forelse ($lecturers as $i => $lecturer)
                             <tr>
                                 <td>
-                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->lecturer_id}}</span>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $i + 1 }}</span>
+                                </td> 
+                                <td>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->lecturer_id }}</span>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -122,17 +125,12 @@
                                         <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->mobile_no }}</span>
                                     </div>
                                 </td>
-                                {{-- <td class="text-end">
-                                    <div class="d-flex flex-center w-100 me-2">
-                                        <span class="text-dark fw-bolder  d-block fs-6">{{ $lecturer->birth_date }}</span>
-                                    </div>
-                                </td>
                                 <td class="text-end">
                                     <div class="d-flex flex-center w-100 me-2">
                                         <span
-                                            class="text-dark fw-bolder  d-block fs-6">{{ Str::words($lecturer->address, 5) }}</span>
+                                            class=" fw-bolder  d-block fs-7 p-1 px-2 {{ $lecturer->status == true ? 'btn btn-light-success' : 'btn btn-light-danger' }}">{{ $lecturer->status == true ? 'Active' : 'Blocked' }}</span>
                                     </div>
-                                </td> --}}
+                                </td>
                                 <td class="text-end">
                                     <div class="d-flex text-center w-100 me-2">
                                         <span
@@ -154,6 +152,20 @@
                                                     <path
                                                         d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
                                                         fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </div>
+                                        <div class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#kt_modal_block_user{{ $lecturer->id }}">
+                                            <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                            <span class="svg-icon svg-icon-3 svg-icon-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                                    <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
@@ -184,6 +196,43 @@
                                     </div>
                                 </td>
                             </tr>
+                            <div class="modal fade" tabindex="-1" id="kt_modal_block_user{{ $lecturer->id }}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-center">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+
+                                            <!--begin::Close-->
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                                data-bs-dismiss="modal" aria-label="Close">
+                                                <span class="svg-icon svg-icon-2x">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.5" x="6" y="17.3137"
+                                                            width="16" height="2" rx="1"
+                                                            transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                        <rect x="7.41422" y="6" width="16"
+                                                            height="2" rx="1"
+                                                            transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <!--end::Close-->
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to {{ $lecturer->status == true ? 'block' : 'unblock' }}
+                                                lecturer?</p>
+                                        </div>
+
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button type="button" class="btn btn-light"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <x-block href="/admin/all_lecturer/{{ $lecturer->lecturer_id }}" :status="$lecturer->status" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="modal fade" tabindex="-1" id="kt_modal_1{{ $lecturer->id }}">
                                 <div class="modal-dialog">
                                     <div class="modal-content text-center">
@@ -373,8 +422,7 @@
                                                         name="department">
                                                         <option>Select Department</option>
                                                         @forelse ($departments as $dept)
-                                                            <option @selected($dept->dept_name == $lecturer->dept_name)
-                                                                >
+                                                            <option @selected($dept->dept_name == $lecturer->dept_name)>
                                                                 {{ $dept->dept_name }}
                                                             </option>
                                                         @empty
