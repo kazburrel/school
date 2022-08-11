@@ -29,7 +29,7 @@ class StoreLecturerRequest extends FormRequest
             'lname' => 'required',
             'email' => ['required', 'email', Rule::unique('lecturers', 'email')],
             'join_date' => 'required',
-            'password' => ['required', 'confirmed', 'min:6'],
+            // 'password' => ['required', 'confirmed', 'min:6'],
             'department' => 'required',
             'gender' => 'required',
             'mobile_no' => 'required',

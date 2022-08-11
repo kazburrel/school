@@ -351,7 +351,7 @@
                                 <div class="col-lg-3 col-md-6 col-12">
                                     <div class="box">
                                         <a href="#">
-                                            <img class="card-img-top" src=".{{asset('main_assets/mages/front-end-img/courses/8.jpg')}}" alt="Card image cap">
+                                            <img class="card-img-top" src="{{asset('main_assets/images/front-end-img/courses/8.jpg')}}" alt="Card image cap">
                                         </a>
                                         <div class="box-body"> 
                                             <div class="text-start">

@@ -59,8 +59,8 @@
 							<option data-icon="flag-icon flag-icon-gb">Eng UK</option>
 						</select>
 					 </li>
-					 <li class="me-10 ps-10"><a href="#"><i class="text-white fa fa-user d-md-inline-block d-none"></i> Register</a></li>
-					 <li class="me-10 ps-10"><a href="#"><i class="text-white fa fa-sign-in d-md-inline-block d-none"></i> Login</a></li>
+					 {{-- <li class="me-10 ps-10"><a href="/register"><i class="text-white fa fa-user d-md-inline-block d-none"></i> Register</a></li> --}}
+					 <li class="me-10 ps-10"><a href="/login"><i class="text-white fa fa-sign-in d-md-inline-block d-none"></i> Login</a></li>
 					 <li class="me-10 ps-10"><a href="#"><i class="text-white fa fa-dashboard d-md-inline-block d-none"></i> My Account</a></li>
 				  </ul>
 				</div>
@@ -71,7 +71,7 @@
 
 		<nav hidden class="nav-white nav-transparent">
 			<div class="nav-header">
-				<a href="index.html" class="brand">
+				<a href="/" class="brand">
 					<img src="{{asset('main_assets/images/logo-light-text2.png')}}" alt=""/>
 				</a>
 				<button class="toggle-bar">
@@ -112,7 +112,7 @@
 				</li>
 			</ul>
 			<ul class="attributes">
-				<li class="d-md-block d-none"><a href="#" class="px-10 pt-15 pb-10"><div class="btn btn-primary py-5">Enroll Now</div></a></li>
+				<li class="d-md-block d-none"><a href="/login" class="px-10 pt-15 pb-10"><div class="btn btn-primary py-5">Enroll Now</div></a></li>
 				<li><a href="#" class="toggle-search-fullscreen"><span class="ti-search"></span></a></li>
 				<li class="megamenu" data-width="270">
 					<a href="#"><span class="ti-shopping-cart"></span></a>

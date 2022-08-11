@@ -27,7 +27,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'fname'=>'required',
             'lname'=>'required',
-            'reg_no'=>['required', Rule::unique('students', 'reg_no')],
+            // 'reg_no'=>['required', Rule::unique('students', 'reg_no')],
             'email'=>['required', Rule::unique('students', 'email')],
             'reg_date'=>'required',
             'department'=>'required',

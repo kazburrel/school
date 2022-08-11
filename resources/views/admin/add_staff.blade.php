@@ -111,39 +111,6 @@
                 <div class="d-flex flex-column mb-8 fv-row">
                     <!--begin::Label-->
                     <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                        <span class="required">Password</span>
-                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                            title="Specify a target name for future usage and reference"></i>
-                    </label>
-                    <!--end::Label-->
-                    <input type="password" class="form-control form-control-solid" placeholder="Enter Department Name"
-                        name="password" value="{{ old('password') }}" />
-                    @error('password')
-                        <p class="text-danger">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <div class="d-flex flex-column mb-8 fv-row">
-                    <!--begin::Label-->
-                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                        <span class="required">Confirm Password</span>
-                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                            title="Specify a target name for future usage and reference"></i>
-                    </label>
-                    <!--end::Label-->
-                    <input type="password" class="form-control form-control-solid"
-                        placeholder="Enter password confirmation" name="password_confirmation"
-                        value="{{ old('password_confirmation') }}" />
-                    @error('password_confirmation')
-                        <p class="text-danger">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <div class="d-flex flex-column mb-8 fv-row">
-                    <!--begin::Label-->
-                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                         <span class="required">Departments</span>
                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                             title="Specify a target name for future usage and reference"></i>
@@ -284,8 +251,8 @@
                     <!--end::Label-->
                     <select class="form-select" aria-label="Select example" name="status">
                         <option value="">Select Status</option>
-                        <option value="true" {{ old('status',) == 'true' ? 'selected' : '' }}>Active</option>
-                        <option value="false" {{ old('status',) == 'false' ? 'selected' : '' }}>Block</option>
+                        <option value="{{true}}" {{ old('status',) == true ? 'selected' : '' }}>Active</option>
+                        <option value="{{false}}" {{ old('status',) == false ? 'selected' : '' }}>Block</option>
                         {{-- <option @selected($skill->type == 'databases') value="databases">DATABASES</option> --}}
                     </select>
                     @error('status')

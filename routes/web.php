@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddDepartmentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LibraryAssetController;
@@ -78,6 +79,9 @@ Route::prefix('/admin')->group(function () {
     Route::get('/course_list', [ViewController::class, 'CourseListView']);
     Route::get('/course_category', [ViewController::class, 'CourseCatView']);
     Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
+    Route::get('/register', [ViewController::class, 'RegisterView']);
+    Route::get('/login', [ViewController::class, 'LoginView']);
+    Route::post('/authenticate', [AuthController::class, 'authenticate']);
    
 
 

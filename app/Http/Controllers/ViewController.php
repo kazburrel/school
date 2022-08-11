@@ -165,4 +165,14 @@ class ViewController extends Controller
     {
         return view('main.course_details');
     }
+    
+    public function RegisterView()
+    {
+        return view('main.register');
+    } 
+    
+    public function LoginView()
+    {
+        return view('main.login');
+    }
 }

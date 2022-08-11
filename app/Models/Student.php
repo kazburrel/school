@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Student extends Model
 {
-    use HasFactory,Searchable;
+    use HasFactory,Searchable, SoftDeletes;
 
     protected $fillable = [
         'fname',
@@ -25,7 +26,8 @@ class Student extends Model
         'address',
         'blood_g',
         'pro_pic',
-        'status'
+        'status',
+        'password'
     ];
 
     public function toSearchableArray()

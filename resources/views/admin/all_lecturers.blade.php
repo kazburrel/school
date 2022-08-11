@@ -264,7 +264,7 @@
                                         <div class="modal-footer d-flex justify-content-center">
                                             <button type="button" class="btn btn-light"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <x-delete href="/admin/all_lecturer/{{ $lecturer->id }}" />
+                                            <x-delete href="/admin/all_lecturer/{{ $lecturer->lecturer_id }}" />
                                         </div>
                                     </div>
                                 </div>

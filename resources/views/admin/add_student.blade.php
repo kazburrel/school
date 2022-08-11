@@ -54,7 +54,7 @@
                             </p>
                         @enderror
                     </div>
-                    <div class="d-flex flex-column mb-8 fv-row">
+                    {{-- <div class="d-flex flex-column mb-8 fv-row">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                             <span class="required">Reg No</span>
@@ -69,7 +69,7 @@
                                 {{ $message }}
                             </p>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="d-flex flex-column mb-8 fv-row">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -210,7 +210,7 @@
                         <!--end::Label-->
                         <input type="number" class="form-control form-control-solid"
                             placeholder="Enter parents Mobile Number" name="parents_no"
-                            value="{{ old('password_confirmation') }}" />
+                            value="{{ old('parents_no') }}" />
                         @error('parents_no')
                             <p class="text-danger">
                                 {{ $message }}
@@ -290,6 +290,26 @@
                         <input type="file" class="form-control form-control-solid" placeholder="" name="pro_pic"
                             value="{{ old('pro_pic') }}" />
                         @error('pro_pic')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Status</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <select class="form-select" aria-label="Select example" name="status">
+                            <option value="">Select Status</option>
+                            <option value="{{true}}" {{ old('status',) == true ? 'selected' : '' }}>True</option>
+                            <option value="{{false}}" {{ old('status',) == false ? 'selected' : '' }}>False</option>
+                            {{-- <option @selected($skill->type == 'databases') value="databases">DATABASES</option> --}}
+                        </select>
+                        @error('status')
                             <p class="text-danger">
                                 {{ $message }}
                             </p>
