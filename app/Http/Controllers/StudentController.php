@@ -76,4 +76,12 @@ class StudentController extends Controller
         Alert::success('Student Deleted Successfully');
         return redirect()->back();
     }
+
+    public function StudentLogout(Request $request){
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }

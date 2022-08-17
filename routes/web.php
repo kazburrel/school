@@ -68,20 +68,26 @@ Route::prefix('/admin')->group(function () {
 });
 
 // MAIN PAGES
-    Route::get('/', [ViewController::class, 'HomeView']);
-    Route::get('/about', [ViewController::class, 'AboutView']);
-    Route::get('/contact', [ViewController::class, 'ContactView']);
-    Route::get('/shop', [ViewController::class, 'ShopView']);
-    Route::get('/shop_cart', [ViewController::class, 'ShopCartView']);
-    Route::get('/shop_checkout', [ViewController::class, 'ShopCheckoutView']);
-    Route::get('/shop_details', [ViewController::class, 'ShopDetailsView']);
-    Route::get('/shop_orders', [ViewController::class, 'ShopOrdersView']);
-    Route::get('/course_list', [ViewController::class, 'CourseListView']);
-    Route::get('/course_category', [ViewController::class, 'CourseCatView']);
-    Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
-    Route::get('/register', [ViewController::class, 'RegisterView']);
-    Route::get('/login', [ViewController::class, 'LoginView']);
-    Route::post('/authenticate', [AuthController::class, 'authenticate']);
-   
+Route::get('/', [ViewController::class, 'HomeView']);
+Route::get('/about', [ViewController::class, 'AboutView']);
+Route::get('/contact', [ViewController::class, 'ContactView']);
+Route::get('/shop', [ViewController::class, 'ShopView']);
+Route::get('/shop_cart', [ViewController::class, 'ShopCartView']);
+Route::get('/shop_checkout', [ViewController::class, 'ShopCheckoutView']);
+Route::get('/shop_details', [ViewController::class, 'ShopDetailsView']);
+Route::get('/shop_orders', [ViewController::class, 'ShopOrdersView']);
+Route::get('/course_list', [ViewController::class, 'CourseListView']);
+Route::get('/course_category', [ViewController::class, 'CourseCatView']);
+Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
+Route::get('/register', [ViewController::class, 'RegisterView']);
+Route::get('/login', [ViewController::class, 'LoginView'])->name('login');
+Route::post('/authenticate', [AuthController::class, 'authenticate']);
 
 
+// Student pages
+Route::prefix('/main/students')->middleware(['role:student', 'auth:student'])->group(function () {
+    Route::get('/student_dashboard', [ViewController::class, 'ViewStudentsDash'])->name('student');
+    Route::get('/student_profile', [ViewController::class, 'ViewStudentsProfile']);
+    Route::get('/student_edit', [ViewController::class, 'ViewStudentsEdit']);
+    Route::get('/logout', [StudentController::class, 'StudentLogout']);
+});

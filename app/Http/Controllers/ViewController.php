@@ -174,5 +174,21 @@ class ViewController extends Controller
     public function LoginView()
     {
         return view('main.login');
+    } 
+    
+    public function ViewStudentsDash()
+    {
+        return view('main.students.student_dashboard');
+    } 
+    
+    public function ViewStudentsProfile()
+    {
+        return view('main.students.student_profile');
+    } 
+    public function ViewStudentsEdit()
+    {
+        return view('main.students.student_edit');
     }
+
+
 }
