@@ -137,6 +137,27 @@
                         <span class="menu-title">View Invoice</span>
                     </a>
                 </div>
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Courses</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="/main/students/register_course">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Register Courses</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="#">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">View Courses</span>
+                    </a>
+                </div>
 
 
                 {{-- <div class="menu-item">

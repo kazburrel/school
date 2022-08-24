@@ -99,6 +99,7 @@
                                         </div>
                                     </div>
                                 </td>
+                             
                                 <td>
                                     <span
                                         class="text-dark fw-bolder  d-block fs-6">{{ $student->departmentDetails !== null ? $student->departmentDetails->dept_name : '' }}</span>

@@ -75,6 +75,9 @@
 
                                             <!--begin::Info-->
                                             <div class="d-flex flex-column">
+
+                                                <p class="text-gray-900 fs-6 mb-1 fw-bolder">
+                                                    {{ $course->departmentDetails->dept_name }}</p>
                                                 <p class="text-gray-900 fs-6 mb-1 fw-bolder">{{ $course->course_name }}</p>
                                                 <span class="text-gray-400 fw-bold">
                                                     {{ Date::parse($course->start_date)->format('jS, F Y') }}
@@ -102,8 +105,9 @@
                                         <!--begin::Toolbar-->
                                         <div class="d-flex justify-content-between">
                                             <div class="d-flex align-items-center rounded">
-                                                <form action="/admin/all_courses{{$course->id}}" method="POST">
-                                                    <button class="border border-0 btn-outline-0 p-0 rounded" type="submit">
+                                                <form action="/admin/all_courses{{ $course->id }}" method="POST">
+                                                    <button class="border border-0 btn-outline-0 p-0 rounded"
+                                                        type="submit">
                                                         <a href="#"
                                                             class="btn btn-sm btn-light btn-color-muted btn-active-light-danger px-4 py-2">
                                                             <!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
@@ -120,6 +124,11 @@
                                                     </button>
                                                 </form>
                                             </div>
+                                            <a href="{{ route('attendance', ['course_id' => $course->course_id]) }}"
+                                                class="btn
+                                                btn-sm btn-light btn-active-light-primary px-4 py-2">
+                                                students
+                                            </a>
                                             <div class="d-flex justify-content-end flex-shrink-0">
                                                 <div class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                     data-bs-toggle="modal"
@@ -166,6 +175,99 @@
                                 <!--end::Body-->
                             </div>
                         </div>
+                        <div class="modal fade" tabindex="-1" id="kt_modal_attendance{{ $course->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"> Attendance </h5>
+
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-2x">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                        height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                        fill="currentColor" />
+                                                    <rect x="7.41422" y="6" width="16" height="2"
+                                                        rx="1" transform="rotate(45 7.41422 6)"
+                                                        fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="card mb-5 mb-xl-8">
+                                            <div class="card-body pt-5">
+                                                <div class="py-2">
+                                                    <!--begin::Item-->
+                                                    <form action="">
+                                                       
+                                                       <table
+                                                       class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 text-center">
+                                                       <!--begin::Table head-->
+                                                       <thead>
+                                                           <tr class="fw-bolder text-muted">
+                                                               <th class="min-w-50px">S/N</th>
+                                                               <th class="min-w-200px">Full Name</th>
+                                                               <th class="min-w-200px">Attendance</th>
+                                                           </tr>
+                                                       </thead>
+                                                       <!--end::Table head-->
+                                                       <!--begin::Table body-->
+                                                       <tbody>
+                                                           {{-- @forelse ($students as $i => $student) --}}
+                                                           <tr>
+                                                               <div class="">
+                                                                   <td>
+                                                                       <span
+                                                                           class="text-dark fw-bolder  d-block fs-6">1</span>
+                                                                   </td>
+                                                                   <td>
+                                                                       <span
+                                                                           class="text-dark fw-bolder  d-block fs-6">Obi</span>
+                                                                   </td>
+                                                               </div>
+
+                                                               <td>
+                                                                   <label
+                                                                       class="form-check form-check-inline form-check-solid">
+                                                                       <input class="form-check-input"
+                                                                           name="communication[]" type="checkbox"
+                                                                           value="2" />
+                                                                   </label>
+                                                               </td>
+                                                           </tr>
+                                                           {{-- @empty
+                                                           @endforelse --}}
+
+                                                       </tbody>
+                                                       <!--end::Table body-->
+                                                   </table>
+                                            
+                                                    </form>
+                                                    <!--end::Item-->
+                                                    <div class="separator separator-dashed my-5"></div>
+                                                    <!--begin::Item-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">Close</button>
+
+                                            <button type="submit" class="btn btn-primary"
+                                            data-bs-dismiss="modal">Submit</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="modal fade" tabindex="-1" id="kt_modal_1{{ $course->id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content text-center">
@@ -197,7 +299,7 @@
                                     <div class="modal-footer d-flex justify-content-center">
                                         <button type="button" class="btn btn-light"
                                             data-bs-dismiss="modal">Close</button>
-                                        <x-delete href="/admin/all_courses/{{ $course->id }}" />
+                                        <x-delete href="/admin/all_courses/{{ $course->course_id }}" />
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +336,7 @@
                                     <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                                         <!--begin:Form-->
                                         <form id="kt_modal_new_target_form" class="form"
-                                            action="/admin/add_course/{{ $course->id }}" method="POST"
+                                            action="/admin/add_course/{{ $course->course_id }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')

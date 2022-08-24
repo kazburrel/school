@@ -161,7 +161,7 @@
                     </div>
                     <!--end::Card title-->
                     <!--begin::Action-->
-                    <a href="/main/students/student_edit" class="btn btn-primary align-self-center">Edit Profile</a>
+                    {{-- <a href="/main/students/student_edit" class="btn btn-primary align-self-center">Edit Profile</a> --}}
                     <!--end::Action-->
                 </div>
                 <!--begin::Card header-->
@@ -174,7 +174,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <span class="fw-bolder fs-6 text-gray-800">Max Smith</span>
+                            <span class="fw-bolder fs-6 text-gray-800">{{$student->fname}} &nbsp; {{$student->lname}}</span>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -182,11 +182,11 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-bold text-muted">Company</label>
+                        <label class="col-lg-4 fw-bold text-muted">Department</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <span class="fw-bold text-gray-800 fs-6">Keenthemes</span>
+                            <span class="fw-bold text-gray-800 fs-6">{{$student->departmentDetails->dept_name}}</span>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -199,7 +199,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 d-flex align-items-center">
-                            <span class="fw-bolder fs-6 text-gray-800 me-2">044 3276 454 935</span>
+                            <span class="fw-bolder fs-6 text-gray-800 me-2">{{$student->mobile_no}}</span>
                             <span class="badge badge-success">Verified</span>
                         </div>
                         <!--end::Col-->
@@ -208,11 +208,11 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-bold text-muted">Company Site</label>
+                        <label class="col-lg-4 fw-bold text-muted">Email</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <a href="#" class="fw-bold fs-6 text-gray-800 text-hover-primary">keenthemes.com</a>
+                            <a href="#" class="fw-bold fs-6 text-gray-800 text-hover-primary">{{$student->email}}</a>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -220,12 +220,12 @@
                     <!--begin::Input group-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-bold text-muted">Department
+                        <label class="col-lg-4 fw-bold text-muted">Reg No
                         <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Country of origination"></i></label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <span class="fw-bolder fs-6 text-gray-800">{{ auth()->students->department }}</span>
+                            <span class="fw-bolder fs-6 text-gray-800">{{$student->reg_no}}</span>
                         </div>
                         <!--end::Col-->
                     </div>

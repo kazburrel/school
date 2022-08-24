@@ -17,6 +17,7 @@ class Course extends Model
 
     protected $fillable = [
         'course_id',
+        'department',
         'lecturer_id',
         'course_name',
         'course_code',
@@ -41,5 +42,9 @@ class Course extends Model
 
     public function lecturerDetails(){
         return $this->belongsTo(Lecturer::class, 'lecturer_id', 'lecturer_id');
+    }
+    
+    public function departmentDetails(){
+        return $this->belongsTo(Department::class, 'department', 'dept_id');
     }
 }

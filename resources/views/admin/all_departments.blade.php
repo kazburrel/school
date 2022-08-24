@@ -66,7 +66,8 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bolder text-muted">
-                            <th class="min-w-50px">Course Id</th>
+                            <th class="min-w-50px">S/N</th>
+                            <th class="min-w-50px">Department Id</th>
                             <th class="min-w-200px">Department Name</th>
                             <th class="min-w-150px">HOD</th>
                             <th class="min-w-150px">Department Start Date</th>
@@ -78,8 +79,11 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @forelse ($departments as $department)
+                        @forelse ($departments as $i => $department)
                             <tr>
+                                <td>
+                                    <span class="text-dark fw-bolder  d-block fs-6">{{ $i + 1 }}</span>
+                                </td> 
                                 <td>
                                     <span class="text-dark fw-bolder  d-block fs-6">{{ $department->dept_id }}</span>
                                 </td>
@@ -96,18 +100,18 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-center">
                                     <div class="d-flex flex-column w-100 me-2">
                                         <span
                                             class="text-dark fw-bolder  d-block fs-6">{{ $department->join_date }}</span>
                                     </div>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-center">
                                     <div class="d-flex flex-column w-100 me-2">
                                         <span class="text-dark fw-bolder  d-block fs-6">{{ $department->stu_cap }}</span>
                                     </div>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-center">
                                     <div class="d-flex flex-column w-100 me-2">
                                         <span
                                             class="text-dark fw-bolder  d-block fs-6">{{ Str::words($department->dept_details, 5) }}</span>

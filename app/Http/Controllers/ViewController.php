@@ -7,9 +7,11 @@ use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lecturer;
 use App\Models\LibraryAsset;
+use App\Models\Registered_courses;
 use App\Models\Staff;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function Ramsey\Uuid\v1;
 
@@ -63,15 +65,19 @@ class ViewController extends Controller
     {
 
         $lecturers = Lecturer::all();
-        return view('admin.add_course', ['lecturers' => $lecturers]);
+        $departments = Department::all();
+        $students = Student::all();
+        return view('admin.add_course', ['lecturers' => $lecturers, 'departments' => $departments, 'students' => $students]);
     }
 
     public function ViewAllCourse()
     {
 
         $lecturers = Lecturer::all();
+        $departments = Department::all();
+        // $registeredCourses = Registered_courses::all();
         $courses = Course::search(request(key: 'search'))->paginate(10);
-        return view('admin.all_courses', ['courses' => $courses, 'lecturers' => $lecturers]);
+        return view('admin.all_courses', ['courses' => $courses, 'lecturers' => $lecturers, 'departments'=>$departments]);
     }
 
     public function ViewAddStaff()
@@ -112,6 +118,18 @@ class ViewController extends Controller
     {
         return view('admin.add_admin');
     }
+    
+    public function attendanceView($course_id)
+    {
+
+        $registeredStudents = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->with('students')->first();
+        // whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->get();
+        // where('courses' , $course_id)->with('students')->first()
+        // dd($registeredStudents);
+        return view('admin.attendance', ['registeredStudents'=>$registeredStudents]);
+    }
+
+
 
     // MAIN BEGINS
 
@@ -183,11 +201,24 @@ class ViewController extends Controller
     
     public function ViewStudentsProfile()
     {
-        return view('main.students.student_profile');
+        $user = Auth::user();
+        $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
+        return view('main.students.student_profile', ['student'=>$student]);
     } 
     public function ViewStudentsEdit()
     {
-        return view('main.students.student_edit');
+        $user = Auth::user();
+        $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
+        return view('main.students.student_edit', ['student'=>$student]);
+    } 
+    public function viewStudentCourseReg()
+    {
+
+        $user = Auth::user();
+        $department = Department::where('dept_id', $user->department)->with(['courses'])->first();
+        $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
+        // dd($department);
+        return view('main.students.register_course', ['department'=>$department, 'student'=>$student]);
     }
 
 

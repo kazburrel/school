@@ -39,6 +39,7 @@ class StoreCourseRequest extends FormRequest
     {
         return [
             'course_name'=> 'Course Name',
+            'department' => 'Department',
             'course_code'=> 'Course Code',
             'course_det'=>'Course Details',
             'start_date'=>'Start Date',

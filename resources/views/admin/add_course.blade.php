@@ -38,6 +38,31 @@
                             </p>
                         @enderror
                     </div>
+
+                    <div class="d-flex flex-column mb-8 fv-row">
+                        <!--begin::Label-->
+                        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                            <span class="required">Department</span>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                title="Specify a target name for future usage and reference"></i>
+                        </label>
+                        <!--end::Label-->
+                        <select class="form-select" aria-label="Select example" name="department">
+                            <option value="">Select Department</option>
+                            @forelse ($departments as $department)
+                                <option value="{{ $department->dept_id }}">
+                                    {{ $department->dept_name }}
+                                </option>
+                            @empty
+                            @endforelse
+                        </select>
+                        @error('department')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
                     <div class="d-flex flex-column mb-8 fv-row">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -155,7 +180,7 @@
                         </select>
                         @error('lecturer')
                             <p class="text-danger">
-                                {{ $message }}
+                                {{ $message}}
                             </p>
                         @enderror
                     </div>

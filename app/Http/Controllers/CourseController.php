@@ -15,9 +15,10 @@ class CourseController extends Controller
     public function AddCourse(StoreCourseRequest $request){
         $course_id = mt_rand(1000, 9999);
         $file = $request->hasFile('course_avatar') ? $request->file('course_avatar')->store('CourseAvatar', 'public') : '';
-
+        // dd($request->department);
         Course::create($request->safe()->merge([
             'course_id' => $course_id,
+            'department'=>$request->department,
             'lecturer_id' => $request->lecturer,
             'course_avatar' => $file
         ])->all());

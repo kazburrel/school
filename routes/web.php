@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LibraryAssetController;
+use App\Http\Controllers\RegisterCourseController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ViewController;
@@ -65,23 +66,27 @@ Route::prefix('/admin')->group(function () {
     Route::put('/all_admin/{admin}', [AdminController::class, 'UpdateAdmin']);
     Route::get('/all_admin/{admin}', [AdminController::class, 'BlockAdmin']);
     Route::delete('/all_admin/{admin}', [AdminController::class, 'DestroyAdmin']);
+    Route::get('/attendance/{course_id}', [ViewController::class, 'attendanceView'])->name('attendance');
+    // Route::post('/attendance', [ViewController::class, 'attendanceView'])->name('attendance');
 });
 
 // MAIN PAGES
-Route::get('/', [ViewController::class, 'HomeView']);
-Route::get('/about', [ViewController::class, 'AboutView']);
-Route::get('/contact', [ViewController::class, 'ContactView']);
-Route::get('/shop', [ViewController::class, 'ShopView']);
-Route::get('/shop_cart', [ViewController::class, 'ShopCartView']);
-Route::get('/shop_checkout', [ViewController::class, 'ShopCheckoutView']);
-Route::get('/shop_details', [ViewController::class, 'ShopDetailsView']);
-Route::get('/shop_orders', [ViewController::class, 'ShopOrdersView']);
-Route::get('/course_list', [ViewController::class, 'CourseListView']);
-Route::get('/course_category', [ViewController::class, 'CourseCatView']);
-Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
-Route::get('/register', [ViewController::class, 'RegisterView']);
-Route::get('/login', [ViewController::class, 'LoginView'])->name('login');
-Route::post('/authenticate', [AuthController::class, 'authenticate']);
+Route::middleware('guest:student')->group(function(){
+    Route::get('/', [ViewController::class, 'HomeView']);
+    Route::get('/about', [ViewController::class, 'AboutView']);
+    Route::get('/contact', [ViewController::class, 'ContactView']);
+    Route::get('/shop', [ViewController::class, 'ShopView']);
+    Route::get('/shop_cart', [ViewController::class, 'ShopCartView']);
+    Route::get('/shop_checkout', [ViewController::class, 'ShopCheckoutView']);
+    Route::get('/shop_details', [ViewController::class, 'ShopDetailsView']);
+    Route::get('/shop_orders', [ViewController::class, 'ShopOrdersView']);
+    Route::get('/course_list', [ViewController::class, 'CourseListView']);
+    Route::get('/course_category', [ViewController::class, 'CourseCatView']);
+    Route::get('/course_details', [ViewController::class, 'CourseDetailsView']);
+    Route::get('/register', [ViewController::class, 'RegisterView']);
+    Route::get('/login', [ViewController::class, 'LoginView'])->name('login');
+    Route::post('/authenticate', [AuthController::class, 'authenticate']);
+}); 
 
 
 // Student pages
@@ -89,5 +94,9 @@ Route::prefix('/main/students')->middleware(['role:student', 'auth:student'])->g
     Route::get('/student_dashboard', [ViewController::class, 'ViewStudentsDash'])->name('student');
     Route::get('/student_profile', [ViewController::class, 'ViewStudentsProfile']);
     Route::get('/student_edit', [ViewController::class, 'ViewStudentsEdit']);
+    Route::get('/register_course', [ViewController::class, 'viewStudentCourseReg']);
     Route::get('/logout', [StudentController::class, 'StudentLogout']);
+    Route::put('/updatePassword', [StudentController::class, 'StudentPasswordUpdate'])->name('UpdateStudentPassword');
+    Route::post('/register_course', [RegisterCourseController::class, 'registerCourses'])->name('registerCourse');
+
 });

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\StoreUpdatePassword;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,7 +26,6 @@ class StudentController extends Controller
         $regNo = $year . "/" . mt_rand(100000, 999999);
         $password = Str::random(10);
         $file = $request->hasFile('pro_pic') ? $request->file('pro_pic')->store('StudentPic', 'public') : '';
-
         Student::create($request->safe()->merge([
             'department' => $request->department,
             'reg_no' => $regNo,
@@ -77,11 +79,27 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
-    public function StudentLogout(Request $request){
+    public function StudentLogout(Request $request)
+    {
         auth()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function StudentPasswordUpdate(StoreUpdatePassword $request)
+    {
+
+        $response = Auth::check(['password' => $request->currentpassword]);
+        if (!$response) return redirect()->back()->withErrors('Your current password does not matches with the password.');
+
+        $student = Auth::user();
+        $student = Student::find($student->id);
+        // dd($student);
+        $student->password = hash::make($request->get('newpassword'));
+        $student->save();
+        Alert::success('Password updated successfully');
+        return redirect()->back();
     }
 }

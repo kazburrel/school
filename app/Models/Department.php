@@ -36,4 +36,7 @@ class Department extends Model
     public function libraryAssets(){
         return $this->hasMany(LibraryAsset::class, 'dept_id');
     }
+    public function courses(){
+        return $this->hasMany(Course::class, 'department', 'dept_id');
+    }
 }
