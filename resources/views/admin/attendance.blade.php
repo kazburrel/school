@@ -5,7 +5,7 @@
         <div class="card-body pt-5">
             <div class="py-2">
                 <!--begin::Item-->
-                <form action="">
+                <form action="" method="POST">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 text-center">
                         <!--begin::Table head-->
                         <thead>
@@ -51,9 +51,14 @@
                         </tbody>
                         <!--end::Table body-->
                     </table>
+                    <div class="separator separator-dashed my-5"></div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label">Submit</span>
+                        </button>
+                    </div>
                 </form>
                 <!--end::Item-->
-                <div class="separator separator-dashed my-5"></div>
                 <!--begin::Item-->
             </div>
         </div>

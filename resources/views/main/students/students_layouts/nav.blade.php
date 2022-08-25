@@ -239,18 +239,6 @@
                         </div>
                         <!--end::Stats-->
                     </div>
-                    <!--end::Wrapper-->
-                    <!--begin::Progress-->
-                    {{-- <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                        <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                            <span class="fw-bold fs-6 text-gray-400">Profile Compleation</span>
-                            <span class="fw-bolder fs-6">50%</span>
-                        </div>
-                        <div class="h-5px mx-3 w-100 bg-light mb-3">
-                            <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div> --}}
-                    <!--end::Progress-->
                 </div>
                 <!--end::Stats-->
             </div>
@@ -271,7 +259,7 @@
             <!--end::Nav item-->
             <!--begin::Nav item-->
             <li class="nav-item mt-2">
-                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/security.html">Security</a>
+                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/main/students/register_course">Register Course</a>
             </li>
             <!--end::Nav item-->
             <!--begin::Nav item-->

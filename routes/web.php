@@ -98,5 +98,6 @@ Route::prefix('/main/students')->middleware(['role:student', 'auth:student'])->g
     Route::get('/logout', [StudentController::class, 'StudentLogout']);
     Route::put('/updatePassword', [StudentController::class, 'StudentPasswordUpdate'])->name('UpdateStudentPassword');
     Route::post('/register_course', [RegisterCourseController::class, 'registerCourses'])->name('registerCourse');
+    Route::get('/student_courses/{course_id}', [ViewController::class, 'viewCourses'])->name('studentCourses');
 
 });

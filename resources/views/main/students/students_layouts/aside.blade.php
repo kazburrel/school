@@ -151,7 +151,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="/main/students/student_courses/{{ $course->course_id }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>

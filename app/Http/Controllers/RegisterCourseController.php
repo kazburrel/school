@@ -18,7 +18,7 @@ class RegisterCourseController extends Controller
         $encodeCourses = json_encode($request->courses);
         $registered_course = Registered_courses::where(['reg_no'=>$user->reg_no, 'dept_id'=>$user->department])->first();
         if ($registered_course){
-             Alert::success('This user has already registred courses');
+             Alert::success('You have already registred your courses');
              return redirect()->back();
         }
         

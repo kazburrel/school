@@ -11,6 +11,7 @@ use App\Models\Registered_courses;
 use App\Models\Staff;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 use function Ramsey\Uuid\v1;
@@ -217,9 +218,29 @@ class ViewController extends Controller
         $user = Auth::user();
         $department = Department::where('dept_id', $user->department)->with(['courses'])->first();
         $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
-        // dd($department);
         return view('main.students.register_course', ['department'=>$department, 'student'=>$student]);
     }
 
+    public function viewCourses($course_id){
+        $user = Auth::user();
+        $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
+        $regCourses = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id. '"]\')')->get();
+        $dRegCourses = json_decode($regCourses, true);
+       
+
+        $mapped = Arr::map($dRegCourses, function($value, $key) {
+            if($value['courses']::where('course_id', Course::class)->exists()) return [
+                // $mapped 
+            ];
+        });
+        
+        // $model = Arr::map($this->authModels(), function($value, $key) use($request) {
+        //     if($value['class']::where('email', $request->email)->exists()) return [
+        //         'guard' => $key, 
+        //     ];
+        // });
+        dd($dRegCourses);
+        return view('main.students.student_courses', ['student'=>$student, 'regCourses'=>$regCourses]);
+    }
 
 }

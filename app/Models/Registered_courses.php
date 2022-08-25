@@ -20,4 +20,8 @@ class Registered_courses extends Model
     public function students(){
         return $this->hasMany(Student::class, 'reg_no', 'reg_no');
     }
+
+    public function courses(){
+        return $this->hasMany(Course::class, 'course_id', 'courses');
+    }
 }
