@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddDepartmentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LecturerController;
@@ -49,6 +50,7 @@ Route::prefix('/admin')->group(function () {
     Route::post('/all_course/{course}', [CourseController::class, 'StoreLike']);
     Route::get('/all_courses', [ViewController::class, 'ViewAllCourse']);
     Route::delete('/all_courses/{course}', [CourseController::class, 'DestroyCourse']);
+    Route::post('/attendance', [AttendanceController::class, 'attendance'])->name('markAttendance');
     Route::get('/add_staff', [ViewController::class, 'ViewAddStaff']);
     Route::post('/add_staff', [StaffController::class, 'AddStaff']);
     Route::get('/all_staff', [ViewController::class, 'ViewAllStaff']);
@@ -98,6 +100,19 @@ Route::prefix('/main/students')->middleware(['role:student', 'auth:student'])->g
     Route::get('/logout', [StudentController::class, 'StudentLogout']);
     Route::put('/updatePassword', [StudentController::class, 'StudentPasswordUpdate'])->name('UpdateStudentPassword');
     Route::post('/register_course', [RegisterCourseController::class, 'registerCourses'])->name('registerCourse');
-    Route::get('/student_courses/{course_id}', [ViewController::class, 'viewCourses'])->name('studentCourses');
+    Route::get('/student_courses', [ViewController::class, 'viewCourses'])->name('studentCourses');
+
+});
+
+Route::prefix('/main/leturers')->middleware(['role:lecturer', 'auth:lecturer'])->group(function () {
+
+    Route::get('/lecturer_dashboard', [ViewController::class, 'ViewLecturerDash'])->name('lecturer');
+    Route::get('/upload_courses', [ViewController::class, 'viewUploadCourses'])->name('courseUpload');
+    Route::get('/lecturer_courses', [ViewController::class, 'viewLecturerCourses'])->name('lecturerCourseView');
+    Route::get('/lecturer_profile', [ViewController::class, 'viewLecturerProfile'])->name('lecturerProfile');
+    Route::get('/lecturer_edit', [ViewController::class, 'viewLecturerEdit'])->name('lecturerEdit');
+    Route::put('/updatePassword', [lecturerController::class, 'lecturerPasswordUpdate'])->name('UpdatelecturerPassword');
+    Route::get('/lecturer_attendance/{course_id}', [ViewController::class, 'attendance'])->name('lecturerAttendance');
+    Route::post('/lecturer_attendance', [AttendanceController::class, 'attendanceMark'])->name('markAttendance');
 
 });

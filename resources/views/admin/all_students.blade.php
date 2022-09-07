@@ -426,9 +426,7 @@
                                                         name="department">
                                                         <option value="">Select Department</option>
                                                         @forelse ($departments as $dept)
-                                                            <option value="{{ $dept->dept_id }}" {{-- @if (dept_id)
-                                                                    
-                                                                @endif --}}
+                                                            <option value="{{ $dept->dept_id }}"
                                                                 {{ $dept->department === $student->departmentDetails->department ? 'selected' : '' }}>
                                                                 {{ $dept->dept_name }}
                                                             </option>

@@ -10,6 +10,7 @@
 
 <body>
     <p>Hello {{ $fname }}</p><br><br>
+    <p>Role: Lecturer</p>
     <p>Your password:  {{ $password }}</p><br><br>
     
     <br><br>

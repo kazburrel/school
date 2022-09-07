@@ -42,7 +42,7 @@
                 id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
               
                 <div class="menu-item">
-                    <a class="menu-link" href="/main/students/student_dashboard">
+                    <a class="menu-link" href="/main/lecturers/student_dashboard">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="/main/students/student_profile">
+                    <a class="menu-link" href="{{ route('lecturerProfile') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -74,25 +74,25 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Homeworks</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Courses</span>
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href=#">
+                    <a class="menu-link" href="{{ route('courseUpload') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">View Homeworks</span>
+                        <span class="menu-title">Add courses</span>
                     </a>
                 </div>
-                {{-- <div class="menu-item">
-                    <a class="menu-link" href="/admin/add_student">
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ route('lecturerCourseView') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Add Student</span>
+                        <span class="menu-title">My Courses</span>
                     </a>
-                </div> --}}
+                </div>
               
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="/main/students/register_course">
+                    <a class="menu-link" href="/main/lecturers/register_course">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -151,7 +151,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="/main/students/student_courses">
+                    <a class="menu-link" href="/main/lecturers/student_courses">
                         {{-- {{ auth()->user()->reg_no}} --}}
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -236,7 +236,7 @@
     <!--end::Aside menu-->
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-        <a href="/main/students/logout" class="btn btn-custom btn-primary w-100"
+        <a href="/main/lecturers/logout" class="btn btn-custom btn-primary w-100"
             data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
             title="Logout">
             <span class="btn-label">Sign Out</span>

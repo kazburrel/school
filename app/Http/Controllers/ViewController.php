@@ -123,11 +123,8 @@ class ViewController extends Controller
     public function attendanceView($course_id)
     {
 
-        $registeredStudents = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->with('students')->first();
-        // whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->get();
-        // where('courses' , $course_id)->with('students')->first()
-        // dd($registeredStudents);
-        return view('admin.attendance', ['registeredStudents'=>$registeredStudents]);
+        $registeredStudents = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->with(['student'])->get();
+        return view('admin.attendance', ['regStudents'=> $registeredStudents]);
     }
 
 
@@ -221,26 +218,99 @@ class ViewController extends Controller
         return view('main.students.register_course', ['department'=>$department, 'student'=>$student]);
     }
 
-    public function viewCourses($course_id){
+    public function viewCourses(){
         $user = Auth::user();
         $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
-        $regCourses = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id. '"]\')')->get();
-        $dRegCourses = json_decode($regCourses, true);
-       
+        $registeredCourses = Registered_courses::where('reg_no' ,$user->reg_no)->first();
+        // dd($registeredCourses->courses);
+        $dRegCourses = json_decode($registeredCourses->courses);
 
-        $mapped = Arr::map($dRegCourses, function($value, $key) {
-            if($value['courses']::where('course_id', Course::class)->exists()) return [
-                // $mapped 
-            ];
-        });
-        
-        // $model = Arr::map($this->authModels(), function($value, $key) use($request) {
-        //     if($value['class']::where('email', $request->email)->exists()) return [
-        //         'guard' => $key, 
-        //     ];
-        // });
-        dd($dRegCourses);
-        return view('main.students.student_courses', ['student'=>$student, 'regCourses'=>$regCourses]);
+        $courseQuery = Course::orderBy('id', 'DESC');
+        foreach ($dRegCourses as  $k => $regcourses) {
+            if($k == 0){
+                $courseQuery->where('course_id', $regcourses); 
+            }else{
+                $courseQuery->orWhere('course_id', $regcourses);
+            } 
+        }
+        $course_tbl = $courseQuery->get();
+        return view('main.students.student_courses', ['student'=>$student, 'course_tbl'=>$course_tbl]);
     }
 
+    public function ViewLecturerDash(){
+
+        
+        return view('main.lecturers.lecturer_dashboard');
+    }
+
+    public function viewUploadCourses(){
+        $user = Auth::user();
+        $departments = Department::where('dept_name', $user->department)->with('lecturer')->first();
+        $lecturers = Lecturer::where('department', $user->department)->first();
+        // dd($departments->dept_id);
+        return view('main.lecturers.upload_courses', ['departments' => $departments, 'lecturers'=>$lecturers]);
+    }
+
+    public function viewLecturerCourses(){
+        $user = Auth::user();
+        $courses = Course::where('lecturer_id', $user->lecturer_id)->get();
+        // dd($courses);
+        return view('main.lecturers.lecturer_courses', ['courses'=>$courses]);
+    }
+
+    public function viewLecturerProfile(){
+        $user = Auth::user();
+        $lecturer = Lecturer::where('lecturer_id', $user->lecturer_id)->with('departmentDetails')->first();
+        // dd($lecturer);
+        return view('main.lecturers.lecturer_profile', ['lecturer'=>$lecturer]);
+    }
+
+    public function viewLecturerEdit(){
+        $user = Auth::user();
+        $lecturer = Lecturer::where('lecturer_id', $user->lecturer_id)->with('departmentDetails')->first();
+        return view('main.lecturers.lecturer_edit', ['lecturer'=>$lecturer]);
+    }
+
+    public function attendance($course_id){
+        $registeredStudents = Registered_courses::whereRaw('json_contains(courses, \'["' . $course_id . '"]\')')->with('student')->get();
+        // $dRegCourses = json_decode($registeredStudents);
+        // dd($registeredStudents);
+
+        // $model = Arr::map($dRegCourses, function($value, $key) {
+
+        //     // if($value['class']::where('email', $request->email)->exists()) {
+        //         //     return [
+        //             //     'guard' => $key, 
+        //             //     ];
+        //             // }
+        //             return $value;
+        //         });
+                
+                // dd($course_id);
+        // foreach ($registeredStudents as $registeredStudent) {
+        //     foreach ($registeredStudent as  $newvalue) {
+        //         dd($newvalue);
+        //         $student = Student::where('reg_no', $registeredStudent->reg_no)->first();
+                
+        //     }
+        // }
+        // $dRegCourses = json_decode($registeredCourses->courses);
+        return view('main.lecturers.lecturer_attendance', ['regStudents'=> $registeredStudents, 'course'=>$course_id]);
+    }
 }
+
+        // $user = Auth::user();
+        // $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
+        // $registeredCourses = Registered_courses::where('reg_no' ,$user->reg_no)->first();
+        // $dRegCourses = json_decode($registeredCourses->courses);
+
+        // $courseQuery = Course::orderBy('id', 'DESC');
+        // foreach ($dRegCourses as  $k => $regcourses) {
+        //     if($k == 0){
+        //         $courseQuery->where('course_id', $regcourses); 
+        //     }else{
+        //         $courseQuery->orWhere('course_id', $regcourses);
+        //     } 
+        // }
+        // $course_tbl = $courseQuery->get();
+        // return view('main.students.student_courses', ['student'=>$student, 'course_tbl'=>$course_tbl]);

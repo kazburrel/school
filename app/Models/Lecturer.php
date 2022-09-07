@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Lecturer extends Model
+class Lecturer extends Authenticatable
 {
     use HasFactory, Searchable, SoftDeletes;
     protected $primaryKey = 'lecturer_id';
@@ -36,5 +37,9 @@ class Lecturer extends Model
 
     public function courses(){
         return $this->hasMany(Course::class, 'lecturer_id');
+    }
+
+    public function departmentdetails(){
+        return $this->belongsTo(Department::class, 'department', 'dept_name');
     }
 }

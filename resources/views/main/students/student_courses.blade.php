@@ -8,7 +8,7 @@
         <div class="table-responsive">
             <!--begin::Table-->
             <div class="row">
-                @forelse ($regCourses->courses as $regCourse)
+                @forelse ($course_tbl as $course_tb)
                     <div class="col-xl-4">
                         <!--begin::Feeds Widget 5-->
                         <div class="card mb-5 mb-xl-8  border border-2 rounded-4">
@@ -23,15 +23,15 @@
                                         <div class="d-flex flex-column">
 
                                             <p class="text-gray-900 fs-6 mb-1 fw-bolder">
-                                                {{ $regCourse->departmentDetails->dept_name }}
+                                                {{ $course_tb->departmentDetails->dept_name}}
                                             </p>
                                             <p class="text-gray-900 fs-6 mb-1 fw-bolder">
-                                                {{-- {{ $course->course_name }} --}}
-                                                wrjfhwk
+                                                {{ $course_tb->course_name }}
+                                             
                                             </p>
                                             <span class="text-gray-400 fw-bold">
-                                                {{-- {{ Date::parse($course->start_date)->format('jS, F Y') }} --}}
-                                                wrjhf
+                                                {{ Date::parse($course_tb->start_date)->format('jS, F Y') }}
+                                              
                                         </div>
                                         <!--end::Info-->
                                     </div>
@@ -43,15 +43,14 @@
                                 <div class="mb-5">
                                     <!--begin::Image-->
                                     <div class="bgi-no-repeat bgi-size-cover rounded min-h-300px mb-5"
-                                        style="background-image:url();">
+                                        style="background-image:url({{ asset('storage/' . $course_tb->course_avatar) }});">
                                     </div>
                                     <!--end::Image-->
                                     <!--begin::Text-->
-                                    <div class="text-gray-800 mb-5">mdgfhjdsfb</div>
+                                    <div class="text-gray-800 mb-5">{{ $course_tb->course_det }}</div>
                                     <div class="text-gray-800 mb-5">
-                                        <span class="fw-bold">Students:</span>
+                                        {{-- <span class="fw-bold">Students:</span> --}}
                                         {{-- {{ $course->max_student > 200 ? '200+' : $course->max_student }} --}}
-                                        sfkhvkjsv
 
 
                                     </div>

@@ -38,5 +38,9 @@ class Department extends Model
     }
     public function courses(){
         return $this->hasMany(Course::class, 'department', 'dept_id');
+    } 
+    public function lecturer(){
+        return $this->hasMany(Lecturer::class, 'department', 'dept_name');
     }
+
 }

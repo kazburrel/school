@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLecturerRequest;
+use App\Http\Requests\StoreUpdatePassword;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Http\Requests\UpdateLecturerRequest;
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -63,6 +65,19 @@ class LecturerController extends Controller
     {
         $lecturer->delete();
         Alert::success('Lecturer Deleted Successfully');
+        return redirect()->back();
+    }
+
+    public function lecturerPasswordUpdate(StoreUpdatePassword $request){
+        $response = Auth::check(['password' => $request->currentpassword]);
+        if (!$response) return redirect()->back()->withErrors('Your current password does not matches with the password.');
+
+        $lecturer = Auth::user();
+        $lecturer = Lecturer::find($lecturer->lecturer_id);
+        // dd($student);
+        $lecturer->password = hash::make($request->get('newpassword'));
+        $lecturer->save();
+        Alert::success('Password updated successfully');
         return redirect()->back();
     }
 }

@@ -5,7 +5,8 @@
         <div class="card-body pt-5">
             <div class="py-2">
                 <!--begin::Item-->
-                <form action="" method="POST">
+                <form action="{{ route('markAttendance') }}" method="POST">
+                    @csrf
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 text-center">
                         <!--begin::Table head-->
                         <thead>
@@ -20,23 +21,24 @@
                         <tbody>
                             @php
                                 $index = 0;
-                            @endphp
-                            @forelse ($registeredStudents->students as $registeredStudent)
-                                <tr>
+                                @endphp
+                            @forelse ($regStudents as $registeredStudent)
+                            <tr>
                                     <div class="">
                                         <td>
                                             <span class="text-dark fw-bolder  d-block fs-6">{{ $index + 1 }}</span>
                                         </td>
                                         <td>
-                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $registeredStudent->fname }}
-                                                {{ $registeredStudent->lname }}</span>
+                                            <span class="text-dark fw-bolder  d-block fs-6">{{ $registeredStudent->student->fname }} &nbsp;
+                                                {{ $registeredStudent->student->lname }}</span>
                                         </td>
                                     </div>
 
                                     <td>
                                         <label class="form-check form-check-inline form-check-solid">
-                                            <input class="form-check-input" name="communication[]" type="checkbox"
-                                                value="2" />
+                                            <input type="hidden" name="attendance[]" value="0" >
+                                            <input class="form-check-input" name="attendance[]" type="checkbox"
+                                                value="1" />
                                         </label>
                                     </td>
                                 </tr>

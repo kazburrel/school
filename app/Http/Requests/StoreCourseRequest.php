@@ -27,6 +27,7 @@ class StoreCourseRequest extends FormRequest
         return [
             'course_name'=> ['required', Rule::unique('courses', 'course_name')],
             'course_code'=> 'required',
+            // 'department'=>'required',
             'course_det'=>'required',
             'start_date'=>'required',
             'course_duration'=>'required',
