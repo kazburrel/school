@@ -114,5 +114,7 @@ Route::prefix('/main/leturers')->middleware(['role:lecturer', 'auth:lecturer'])-
     Route::put('/updatePassword', [lecturerController::class, 'lecturerPasswordUpdate'])->name('UpdatelecturerPassword');
     Route::get('/lecturer_attendance/{course_id}', [ViewController::class, 'attendance'])->name('lecturerAttendance');
     Route::post('/lecturer_attendance', [AttendanceController::class, 'attendanceMark'])->name('markAttendance');
-
+    Route::get('/lecturer_calender', [ViewController::class, 'viewcalender'])->name('calenderView');
+    Route::post('/lecturer_calender', [lecturerController::class, 'addEvent'])->name('addingOfEvent');
+    Route::get('/logout', [lecturerController::class, 'lecturerLogout'])->name('lecturerlogout');
 });

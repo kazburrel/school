@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Attendance;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Lecturer;
@@ -200,8 +201,10 @@ class ViewController extends Controller
     public function ViewStudentsProfile()
     {
         $user = Auth::user();
+        $attendance = Attendance::where('student', $user->reg_no)->with('courseDetails')->get();
+        // dd($attendance);
         $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
-        return view('main.students.student_profile', ['student'=>$student]);
+        return view('main.students.student_profile', ['student'=>$student, 'attendance' => $attendance]);
     } 
     public function ViewStudentsEdit()
     {
@@ -297,20 +300,10 @@ class ViewController extends Controller
         // $dRegCourses = json_decode($registeredCourses->courses);
         return view('main.lecturers.lecturer_attendance', ['regStudents'=> $registeredStudents, 'course'=>$course_id]);
     }
+
+    public function viewcalender(){
+        return view('main.lecturers.lecturer_calender');
+    }
 }
 
-        // $user = Auth::user();
-        // $student = Student::where('id', $user->id)->with(['departmentDetails'])->first();
-        // $registeredCourses = Registered_courses::where('reg_no' ,$user->reg_no)->first();
-        // $dRegCourses = json_decode($registeredCourses->courses);
 
-        // $courseQuery = Course::orderBy('id', 'DESC');
-        // foreach ($dRegCourses as  $k => $regcourses) {
-        //     if($k == 0){
-        //         $courseQuery->where('course_id', $regcourses); 
-        //     }else{
-        //         $courseQuery->orWhere('course_id', $regcourses);
-        //     } 
-        // }
-        // $course_tbl = $courseQuery->get();
-        // return view('main.students.student_courses', ['student'=>$student, 'course_tbl'=>$course_tbl]);

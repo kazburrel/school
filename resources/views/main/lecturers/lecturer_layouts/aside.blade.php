@@ -100,65 +100,64 @@
                     </div>
                 </div>
                 <div class="menu-item">
+                    <a class="menu-link" href="{{ route('calenderView') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Calender</span>
+                    </a>
+                </div>
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Exam Time Table</span>
+                        <span class="menu-title">Add to My Calender</span>
                     </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" href="#">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Lecture Timetable</span>
-                    </a>
-                </div>
+                </div> --}}
                 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Invoice</span>
                     </div>
-                </div>
-                <div class="menu-item">
+                </div> --}}
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">Generate Invoice</span>
                     </a>
-                </div>
-                <div class="menu-item">
+                </div> --}}
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">View Invoice</span>
                     </a>
-                </div>
-                <div class="menu-item">
+                </div> --}}
+                {{-- <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Courses</span>
                     </div>
-                </div>
-                <div class="menu-item">
+                </div> --}}
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="/main/lecturers/register_course">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">Register Courses</span>
                     </a>
-                </div>
-                <div class="menu-item">
+                </div> --}}
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="/main/lecturers/student_courses">
-                        {{-- {{ auth()->user()->reg_no}} --}}
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">View Courses</span>
                     </a>
-                </div>
+                </div> --}}
 
 
                 {{-- <div class="menu-item">
@@ -236,10 +235,10 @@
     <!--end::Aside menu-->
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-        <a href="/main/lecturers/logout" class="btn btn-custom btn-primary w-100"
+        <a href="{{route('lecturerlogout')}}" class="btn btn-custom btn-primary w-100"
             data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
             title="Logout">
-            <span class="btn-label">Sign Out</span>
+            <span class="btn-label">Log Out</span>
             <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
             <span class="svg-icon btn-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

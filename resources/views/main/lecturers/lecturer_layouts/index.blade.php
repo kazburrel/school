@@ -118,15 +118,18 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('admin_assets/js/custom/account/settings/signin-methods.js') }}"></script>
     <script src="{{ asset('admin_assets/js/custom/account/settings/profile-details.js') }}"></script>
     <script src="{{ asset('admin_assets/js/custom/account/settings/deactivate-account.js') }}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/offer-a-deal/type.js')}}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/offer-a-deal/details.js')}}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/offer-a-deal/finance.js')}}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/offer-a-deal/complete.js')}}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/offer-a-deal/main.js')}}"></script>
-    <script src="{{asset('admin_assets/js/custom/utilities/modals/two-factor-authentication.js')}}"></script>Í
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/offer-a-deal/type.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/offer-a-deal/details.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/offer-a-deal/finance.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/offer-a-deal/complete.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/offer-a-deal/main.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/custom/utilities/modals/two-factor-authentication.js') }}"></script>Í
+    @stack('scripts')
+    {{-- <script src="{{ asset('admin_assets/js/custom/apps/calendar/calendar.js') }}"></script> --}}
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     @include('sweetalert::alert')
+    {{-- <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script> --}}
 
 
 </body>

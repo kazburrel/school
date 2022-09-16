@@ -299,10 +299,12 @@
               <div class="d-flex text-center">
                 <div class="card-body p-9">
                     <h3>Attendance:</h3> 
-                    <p>dkfhdskff</p>
-                    <p>dkfhdskff</p>
-                    <p>dkfhdskff</p>
-                    <p>dkfhdskff</p>
+                    @forelse ($attendance as $attend)
+                    <p>{{ $attend->date }} - {{ $attend->courseDetails->course_name }}: &nbsp; {{$attend->attendance}}</p>
+                    @empty
+                        
+                    @endforelse
+                
                     <a href="#">See all></a>
                </div> 
                <div class="card-body p-9">

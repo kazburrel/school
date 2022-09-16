@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventsRequest;
 use App\Http\Requests\StoreLecturerRequest;
 use App\Http\Requests\StoreUpdatePassword;
 use App\Http\Requests\UpdateDepartmentRequest;
@@ -54,6 +55,13 @@ class LecturerController extends Controller
         return redirect()->back();
     }
 
+    public function addEvent(StoreEventsRequest $request){
+        
+        dd($request);
+
+
+    }
+
     public function BlockLecturer(Lecturer $lecturer)
     {
         $lecturer->status = !$lecturer->status;
@@ -79,5 +87,12 @@ class LecturerController extends Controller
         $lecturer->save();
         Alert::success('Password updated successfully');
         return redirect()->back();
+    }
+
+    public function lecturerLogout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

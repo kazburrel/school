@@ -13,4 +13,8 @@ class Attendance extends Model
     protected $fillable = [
         'date','attendance','student','course'
     ];
+
+    public function courseDetails(){
+        return $this->hasOne(Course::class, 'course_id', 'course');
+    }
 }
