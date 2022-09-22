@@ -59,7 +59,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect(route($guard));
         }
-
+        // dd(auth()->attempt($request->all(['email', 'password'])));
         return back()->withErrors(['email' => 'Invalid Credentials'], 'login')->onlyInput('email');
     }
 
