@@ -122,9 +122,8 @@
                                     </div>
                                 </td>
                                 <td class="text-end">
-                                    <div class="d-flex flex-center w-100 me-2">
-                                        <span
-                                            class=" fw-bolder  d-block fs-7 p-1 px-2 {{ $student->status == true ? 'btn btn-light-success' : 'btn btn-light-danger' }}">{{ $student->status == true ? 'Active' : 'Blocked' }}</span>
+                                    <div class="d-flex flex-center w-100 me-2"> 
+                                        <span  class=" fw-bolder  d-block fs-7 p-1 px-2 {{ $student->status == true ? 'btn btn-light-success' : 'btn btn-light-danger' }}">{{ $student->status == true ? 'Active' : 'Blocked' }}</span>
                                     </div>
                                 </td>
                                 <td>
