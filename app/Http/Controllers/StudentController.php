@@ -96,7 +96,6 @@ class StudentController extends Controller
 
         $student = Auth::user();
         $student = Student::find($student->id);
-        // dd($student);
         $student->password = hash::make($request->get('newpassword'));
         $student->save();
         Alert::success('Password updated successfully');

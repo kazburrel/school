@@ -46,7 +46,6 @@ class StaffController extends Controller
     public function UpdateStaff(UpdateStaffRequest $request, Staff $staff)
     {
         $file = $request->hasFile('staff_avatar') ? $request->file('staff_avatar')->store('StaffPic', 'public') : $staff->staff_avatar;
-
         $staff->update($request->safe()->merge([
             'staff_avatar' => $file
         ])->all());

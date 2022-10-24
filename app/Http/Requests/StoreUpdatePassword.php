@@ -27,7 +27,6 @@ class StoreUpdatePassword extends FormRequest
         return [
             'currentpassword' => 'required',
             'newpassword' => ['required', 'confirmed', 'min:6', 'alpha_num', 'max:16', 'different:currentpassword'],
-            // 'newpassword' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
         ];
     }
 
